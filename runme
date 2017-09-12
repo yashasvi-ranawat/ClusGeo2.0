@@ -1,0 +1,28 @@
+#!/bin/sh
+
+
+a=$(zenity 2>/dev/null --list \
+  --title="How may I serve you today?" \
+  --column="Selec. #" --column="Description" \
+    1 "Scan Surface Hydrogen." \
+    2 "Get Soap Matrix on the Cluster Surface." \
+    3 "Get Soap Matrix on the Whole Cluster. " \
+    4 "Get Cluster Matrix of a Hydrogen Scan." \
+    5 "Get Unique Surface Atoms." \
+    6 "Get Unique Surface Hydrogens."\
+    7 "Set Hydrogen Atoms on Unique Surface Atom"
+    )
+
+echo $a
+
+if [ $a -eq 1 ]; then
+./defaultScan.sh
+fi
+
+if [ $a -eq 2 ]; then
+./defaultSurface.sh 
+fi
+
+if [ $a -eq 3 ]; then
+./defaultAll.sh 
+fi
