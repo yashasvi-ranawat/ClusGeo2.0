@@ -47,7 +47,7 @@ if [ $nAtoms -eq 2 ];then
     fi 
 
     zenity 2>/dev/null  --info \
-    --text="${FILE}_oneAt_05_5_3_9_$grid.soapAll \n was produced!"
+    --text="${FILE}_oneAt_05_5_3_3_$grid.soapAll \n was produced!"
 
  else
      echo "Error... Type1"
