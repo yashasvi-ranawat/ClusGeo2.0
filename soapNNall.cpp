@@ -175,8 +175,6 @@ for(int bigI = 0; bigI < coord.n_rows; bigI++){
   rhoAll = getGaussDistr(coordH ,R, The, Phi, X, Y, Z, sig);
 
 
-rho_a.slice(5).save("rho_a",raw_ascii);
-rho_b.slice(5).save("rho_b",raw_ascii);
   //----------------------------------------------------------------------------------------------------------------
   // Part 3) get coefs c_anlm by Integration ->  where C(a,n,I) where a is the type, n is the radial basis function
   //         and I is (l,m) sequenially. intMa and intMb multiplied with getT are integrands.
@@ -185,10 +183,6 @@ rho_b.slice(5).save("rho_b",raw_ascii);
   intMea = rho_a%GLC;
   intMeb = rho_b%GLC;
   intAll = rhoAll%GLC;
-
-intMea.save("Mea.save",raw_ascii);
-intMeb.save("Meb.save",raw_ascii);
-intAll.save("MeAll.save",raw_ascii);
 
 
   globalI = 0;
