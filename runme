@@ -4,25 +4,63 @@
 a=$(zenity 2>/dev/null --list \
   --title="How may I serve you today?" \
   --column="Selec. #" --column="Description" \
+  --width=600 \
+  --height=800 \
     1 "Scan Surface Hydrogen." \
     2 "Get Soap Matrix on the Cluster Surface." \
     3 "Get Soap Matrix on the Whole Cluster. " \
-    4 "Get Cluster Matrix of a Hydrogen Scan." \
+    4 "Get Soap Matrix of a Hydrogen Scan." \
     5 "Get Unique Surface Atoms." \
     6 "Get Unique Surface Hydrogens."\
     7 "Set Hydrogen Atoms on Unique Surface Atom"
     )
+q=1
 
-echo $a
-
-if [ $a -eq 1 ]; then
-./defaultScan.sh
+if [ $a -lt 5 ]; then
+zenity 2>/dev/null --question \
+--text="Would you like to use default values?" 
+case $? in 
+  0) q=1;; 
+  1) q=0;; 
+  *) echo "Error..";; 
+esac
 fi
 
-if [ $a -eq 2 ]; then
-./defaultSurface.sh 
+if [ $q -eq 1 ]; then
+  if [ $a -eq 1 ]; then
+    ./defaultScan.sh
+  fi
+
+  if [ $a -eq 2 ]; then
+    ./defaultSurface.sh 
+  fi
+
+  if [ $a -eq 3 ]; then
+    ./defaultAll.sh 
+  fi
+  if [ $a -eq 4 ]; then
+    ./defaultHydrogen.sh 
+  fi
+  if [ $a -eq 5 ]; then
+    ./elimSurface.sh 
+  fi
+  if [ $a -eq 6 ]; then
+    ./elimHydrogen.sh 
+  fi
+elif [ $q -eq 0 ]; then
+  if [ $a -eq 1 ]; then
+    ./scanHydrogen.sh
+  fi
+
+  if [ $a -eq 2 ]; then
+    ./surface.sh 
+  fi
+
+  if [ $a -eq 3 ]; then
+    ./allAt.sh 
+  fi
+
+else
+  echo "ERROR"
 fi
 
-if [ $a -eq 3 ]; then
-./defaultAll.sh 
-fi

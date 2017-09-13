@@ -183,7 +183,7 @@ for(int i = 0; i < theta.n_rows - 1  ;i++){
 ///cout << "aaa" << endl;
 //------------------------------------------------------------------------
   for(int j = 0; j < evenedElimSizeElim ;j++){
-             cout << "H  "  << domeEvenedElimElim(j,0) << " " <<  domeEvenedElimElim(j,1) << " " <<
+             cout <<  domeEvenedElimElim(j,0) << " " <<  domeEvenedElimElim(j,1) << " " <<
              domeEvenedElimElim(j,2) <<  endl; }
 //----------------------------------------------------------------------
       }
