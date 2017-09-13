@@ -9,10 +9,10 @@ a=$(zenity 2>/dev/null --list \
     1 "Scan Surface Hydrogen." \
     2 "Get Soap Matrix on the Cluster Surface." \
     3 "Get Soap Matrix on the Whole Cluster. " \
-    4 "Get Soap Matrix of a Hydrogen Scan." \
-    5 "Get Unique Surface Atoms." \
-    6 "Get Unique Surface Hydrogens."\
-    7 "Set Hydrogen Atoms on Unique Surface Atom"
+    4 "Get Soap Matrix of a Hydrogen Scan. Must do (1) . " \
+    5 "Get Unique Surface Atoms. Must do (2) ." \
+    6 "Get Unique Surface Hydrogens. Must do (4) ."\
+    7 "Set Hydrogen Atoms on Unique Surface Atom. Must do (6)."
     )
 q=1
 

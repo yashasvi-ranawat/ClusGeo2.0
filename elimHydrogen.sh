@@ -1,7 +1,6 @@
 #!/bin/sh
 
-FILE=`zenity 2>/dev/null --file-selection --title="Select a .Hsoap File. Make sure that the file is in the right format
-(Hsoap format.)"`
+FILE=`zenity 2>/dev/null --file-selection --title="Select a .Hsoap File. Make sure that the file is in the right format (Hsoap format.)"`
 case $? in
          0)
                 echo "\"$FILE\" selected.";;

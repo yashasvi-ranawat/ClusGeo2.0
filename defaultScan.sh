@@ -1,6 +1,6 @@
 #!/bin/sh
 
-FILE=`zenity 2>/dev/null --file-selection --title="Select an xyz File with the Target Hydrogen at the end."`
+FILE=`zenity 2>/dev/null --file-selection --title="Select a .xyz File."`
 case $? in
          0)
                 echo "\"$FILE\" selected.";;
@@ -39,10 +39,10 @@ esac
 #grid=$((gridLevel*100));
 
 
-./scanH $FILE 150 0.3 2.7 1.2 2.2 | tee "$FILE"_200_03_27_12_22.Hscan | zenity --progress --pulsate
+./scanH $FILE 150 0.5 2.8 1.2 2.2 | tee "$FILE"_150_05_28_12_22.Hscan | zenity --progress --pulsate
 
     zenity 2>/dev/null  --info \
-    --text="${FILE}_150_03_27_12_22.Hscan was produced!"
+    --text="${FILE}_150_05_27_12_22.Hscan was produced!"
 
 
 

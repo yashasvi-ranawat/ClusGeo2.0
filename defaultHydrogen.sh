@@ -20,10 +20,10 @@ case $? in
                 echo "An unexpected error has occurred.";exit;;
 esac
 
-grid=$(zenity 2>/dev/null --scale --text "Pic a grid density level.\nUsually the smallest is accurate enough. O(N^3)" --min-value=1 --max-value=3 --value=1 --step 1)
+grid=$(zenity 2>/dev/null --scale --text "Pic a grid density.\n Usually the smallest is accurate enough. O(N^3)" --min-value=1 --max-value=3 --value=1 --step 1)
 case $? in
          0)
-		echo "You selected grid level = $grid.";;
+		echo "You selected grid density = $grid.";;
          1)
                 echo "No value selected."; exit ;;
         -1)

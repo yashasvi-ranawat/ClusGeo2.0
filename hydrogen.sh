@@ -23,34 +23,24 @@ r0=$(zenity 2>/dev/null  --scale --text "Pic a bohr radius. This defines the sha
 --min-value=1 --max-value=9 --value=5 --step 1)
 case $? in
          0)
-		echo "You selected acut = $acut.";;
+		echo "You selected r0 = $r0.";;
          1)
                 echo "No value selected."; exit ;;
         -1)
                 echo "An unexpected error has occurred."; exit;;
 esac
 
-rcut=$(zenity 2>/dev/null  --scale --text "Pic a Soap cuttof in Angs.\n MAX is 10.\n For large cutoff, make sure to use a dense grid. " --min-value=1 --max-value=10 --value=5 --step 1)
+rcut=$(zenity 2>/dev/null  --scale --text "Pic a Soap cuttof.\n MAX is 10.\n For large cutoff, make sure to use a dense grid. " --min-value=1 --max-value=10 --value=5 --step 1)
 case $? in
          0)
-		echo "You selected acut = $acut.";;
+		echo "You selected rcut = $rcut.";;
          1)
                 echo "No value selected."; exit ;;
         -1)
                 echo "An unexpected error has occurred."; exit;;
 esac
 
-l=$(zenity 2>/dev/null --scale --text "Pic a number of spherical harmonic basis functions.\n Between 1 and 9. \n O(N^2) " --min-value=1 --max-value=9 --value=9 --step 1)
-case $? in
-         0)
-		echo "You selected l = $l.";;
-         1)
-                echo "No value selected."; exit ;;
-        -1)
-                echo "An unexpected error has occurred."; exit;;
-esac
-
-n=$(zenity 2>/dev/null --scale --text "Pic a number of radial basis functions.\n Between 1 and 3. Default is 3 \n O(N^2) " --min-value=1 --max-value=3 --value=3 --step 1)
+l=$(zenity 2>/dev/null --scale --text "Pic the number for spherical harmonic basis functions.\n Between 1 and 9. \n O(N^2) " --min-value=1 --max-value=9 --value=9 --step 1)
 case $? in
          0)
 		echo "You selected l = $l.";;
@@ -60,10 +50,20 @@ case $? in
                 echo "An unexpected error has occurred."; exit;;
 esac
 
-grid=$(zenity 2>/dev/null --scale --text "Pic a grid density level.\nUsually the smallest is accurate enough. O(N^3)" --min-value=1 --max-value=3 --value=1 --step 1)
+n=$(zenity 2>/dev/null --scale --text "Pic the number of radial basis functions.\n Between 1 and 3. Default is 3 \n O(N) " --min-value=1 --max-value=3 --value=3 --step 1)
 case $? in
          0)
-		echo "You selected grid level = $grid.";;
+		echo "You selected l = $l.";;
+         1)
+                echo "No value selected."; exit ;;
+        -1)
+                echo "An unexpected error has occurred."; exit;;
+esac
+
+grid=$(zenity 2>/dev/null --scale --text "Pic a grid density.\nUsually the smallest is accurate enough. O(N^3)" --min-value=1 --max-value=3 --value=1 --step 1)
+case $? in
+         0)
+		echo "You selected grid density = $grid.";;
          1)
                 echo "No value selected."; exit ;;
         -1)

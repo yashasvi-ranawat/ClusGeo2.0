@@ -29,7 +29,7 @@ esac
             zenity --error \
               --text="Canceled."
     fi 
-FILE2=`zenity 2>/dev/null --file-selection --title="Select the .xyz file corresponding to the .surfUniq file."`
+FILE2=`zenity 2>/dev/null --file-selection --title="Select the .xyz file corresponding to the .surfsoap file."`
 case $? in
          0)
                 echo "\"$FILE2\" selected.";;
