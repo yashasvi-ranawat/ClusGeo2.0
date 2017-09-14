@@ -71,8 +71,7 @@ case $? in
                 echo "An unexpected error has occurred."; exit;;
 esac
 
-atoms=$(zenity 2>/dev/null --list --text "Select Atom Types." --checklist  --column "Check" --column "Atom" TRUE "Au"
-TRUE "Cu" FALSE "Mo" FALSE "S" FALSE "Ni" FALSE "P" --separator=" ")
+atoms=$(zenity 2>/dev/null --list --text "Select Atom Types." --checklist  --column "Check" --column "Atom" TRUE "Au" TRUE "Cu" FALSE "Mo" FALSE "S" FALSE "Ni" FALSE "P" --separator=" ")
 
 nAtoms=$(echo "$atoms" | wc -w)
 
