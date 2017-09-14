@@ -1,4 +1,5 @@
 #1 Introduction
+
 ClusGeo2.0 is a software designed for avoiding redundant DFT calculations for adsorption sites on a nano-cluster and
 produce soap kernel for possible machine learning applications. The software can do the following.
 1. Set up many hydrogens on the cluster surface between a minimum distance from the surface atoms to a maximum distance.
