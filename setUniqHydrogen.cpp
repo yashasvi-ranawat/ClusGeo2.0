@@ -26,11 +26,11 @@ int main(int argc, char** argv) {
   rowvec bufvec2 = zeros<rowvec>(3);
   rowvec bufvecBest = zeros<rowvec>(3);
 
-  vec the = 3.1416*linspace<vec>(0,3.1416/2.0,60);
-  vec phi = 3.1416*linspace<vec>(0,3.1416,120);
+  vec the = 3.1416*linspace<vec>(0,3.1416/2.0,45);
+  vec phi = 3.1416*linspace<vec>(0,3.1416,90);
 
 
-  int radius = atof(argv[3]);
+  double radius = atof(argv[3]);
 
   for(int p = 0; p < q.n_elem; p++){
     coulmbNew = 0;

@@ -9,10 +9,10 @@ a=$(zenity 2>/dev/null --list \
     1 "Scan Surface Hydrogen." \
     2 "Get Soap Matrix on the Cluster Surface." \
     3 "Get Soap Matrix on the Whole Cluster. " \
-    4 "Get Soap Matrix of a Hydrogen Scan. Must do (1) . " \
-    5 "Get Unique Surface Atoms. Must do (2) ." \
-    6 "Get Unique Surface Hydrogens. Must do (4) ."\
-    7 "Set Hydrogen Atoms on Unique Surface Atom. Must do (6)."
+    4 "Get Soap Matrix of a Hydrogen Scan. Must do (1) before . " \
+    5 "Get Unique Surface Atoms. Must do (2) before ." \
+    6 "Get Unique Surface Hydrogens. Must do (4) before ."\
+    7 "Set Hydrogen Atoms on Unique Surface Atom. Must do (6) before."
     )
 q=1
 
@@ -46,6 +46,9 @@ if [ $q -eq 1 ]; then
   fi
   if [ $a -eq 6 ]; then
     ./elimHydrogen.sh 
+  fi
+  if [ $a -eq 7 ]; then
+    ./putHydrogen.sh
   fi
 elif [ $q -eq 0 ]; then
   if [ $a -eq 1 ]; then

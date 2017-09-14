@@ -22,7 +22,7 @@ esac
 
 
 
-    ./elimH $FILE 0.00${thresh}  | tee "$FILE"_000${thresh}_"$grid".Huniq| zenity --progress --auto-close --pulsate
+    ./elimH $FILE 0.00${thresh}  | tee "$FILE"_00${thresh}_"$grid".Huniq| zenity --progress --auto-close --pulsate
 
 
     if [ "$?" = -1 ] ; then
@@ -39,10 +39,10 @@ case $? in
                 echo "An unexpected error has occurred.";exit;;
 esac
 
-#    while read p ; do sed -i "$(($p+2))s/^\s*[A-Za-z]./Lr/" $FILE2.check ; done <"$FILE"_000${thresh}_"$grid".Huniq
+#    while read p ; do sed -i "$(($p+2))s/^\s*[A-Za-z]./Lr/" $FILE2.check ; done <"$FILE"_00${thresh}_"$grid".Huniq
 
     zenity 2>/dev/null  --info \
-    --text="${FILE}_000${thresh}_$grid.Huniq \n was produced. 
+    --text="${FILE}_00${thresh}_$grid.Huniq \n was produced. 
     which  atoms are Unique."
 
 
