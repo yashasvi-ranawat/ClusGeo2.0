@@ -8,4 +8,5 @@ all:
 	g++ soapNNHydrogen.cpp -O3 -larmadillo -o Hsoap
 	g++ soapNNHydrogenSingle.cpp -O3 -larmadillo -o HsoapOne 
 	g++ eliminateHs.cpp -O3 -larmadillo -o elimH
+	g++ setUniqHydrogen.cpp -O3 -larmadillo -o putH
 
