@@ -29,12 +29,8 @@ case $? in
                 echo "An unexpected error has occurred.";exit;;
 esac
 
-    ./putH $FILE $FILE2 1.$dist | tee ${FILE}_1$dist.Hput | zenity --progress --auto-close --pulsate
+    ./putH $FILE $FILE2 1.$dist > ${FILE}_1$dist.Hput 
 
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Canceled."
-    fi 
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_1$dist.Hput was produced!\n Check it by catting it onto the .xyz file."

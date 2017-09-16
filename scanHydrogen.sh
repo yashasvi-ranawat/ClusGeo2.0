@@ -59,7 +59,7 @@ esac
 
 
 
-./scanH $FILE $gridLevel 0.${spa} 2.${b} 1.${minDist} 2.${maxDist} | tee "$FILE"_${gridLevel}_0${spa}_2${b}_1${minDist}_2${maxDist}.Hscan | zenity --progress --pulsate
+./scanH $FILE $gridLevel 0.${spa} 2.${b} 1.${minDist} 2.${maxDist} > "$FILE"_${gridLevel}_0${spa}_2${b}_1${minDist}_2${maxDist}.Hscan 
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_${gridLevel}_0${spa}_2${b}_1${minDist}_2${maxDist}.Hscan was produced!"

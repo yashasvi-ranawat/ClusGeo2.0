@@ -22,13 +22,9 @@ esac
 
 
 
-    ./elimH $FILE 0.00${thresh}  | tee "$FILE"_00${thresh}_"$grid".Huniq| zenity --progress --auto-close --pulsate
+    ./elimH $FILE 0.00${thresh}  > "$FILE"_00${thresh}_"$grid".Huniq
 
 
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Canceled."
-    fi 
 FILE2=`zenity 2>/dev/null --file-selection --title="Select the .Hscan file corresponding to the .Huniq file."`
 case $? in
          0)

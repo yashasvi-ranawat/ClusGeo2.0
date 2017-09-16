@@ -77,7 +77,7 @@ nAtoms=$(echo "$atoms" | wc -w)
 echo "$nAtoms"
 
 if [ $nAtoms -eq 2 ];then
-    ./Hsoap $FILE $atoms $FILE2 0.${r0} ${rcut} ${n} ${l} $grid | tee "$FILE"_twoAt_0${r0}_${rcut}_${n}_${l}_"$grid".Hsoap| zenity --progress --auto-close --pulsate
+    ./Hsoap $FILE $atoms $FILE2 0.${r0} ${rcut} ${n} ${l} $grid > "$FILE"_twoAt_0${r0}_${rcut}_${n}_${l}_"$grid".Hsoap
 
 
     if [ "$?" = -1 ] ; then
@@ -90,12 +90,7 @@ if [ $nAtoms -eq 2 ];then
 
  elif [ $nAtoms -eq 1 ]
     then
-    ./HsoapOne $FILE $FILE2 0.${r0} ${rcut} ${n} ${l} $grid | tee "$FILE"_oneAt_0${r0}_${rcut}_${n}_${l}_"$grid".Hsoap| zenity --progress --auto-close --pulsate
-
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Update canceled."
-    fi 
+    ./HsoapOne $FILE $FILE2 0.${r0} ${rcut} ${n} ${l} $grid > "$FILE"_oneAt_0${r0}_${rcut}_${n}_${l}_"$grid".Hsoap
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_oneAt_0${r0}_${rcut}_${n}_${l}_$grid.Hsoap"

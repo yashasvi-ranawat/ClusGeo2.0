@@ -67,24 +67,14 @@ nAtoms=$(echo "$atoms" | wc -w)
 echo "$nAtoms"
 
 if [ $nAtoms -eq 2 ];then
-    ./allTwo $FILE $atoms 0.$r0 $rcut $n $l $grid | tee "$FILE"_twoAt_05_${rcut}_${n}_${l}_"$grid".soapAll | zenity --progress --auto-close --pulsate
-
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Update canceled."
-    fi 
+    ./allTwo $FILE $atoms 0.$r0 $rcut $n $l $grid > "$FILE"_twoAt_05_${rcut}_${n}_${l}_"$grid".soapAll 
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_twoAt_0${r0}_${rcut}_${n}_${l}_$grid.soapAll \n was produced!"
 
  elif [ $nAtoms -eq 1 ]
     then
-    ./allOne $FILE 0.$r0 $rcut $n $l $grid | tee "$FILE"_oneAt_0${r0}_${rcut}_${n}_${l}_"$grid".soapAll | zenity --progress --auto-close # --pulsate
-
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Update canceled."
-    fi 
+    ./allOne $FILE 0.$r0 $rcut $n $l $grid > "$FILE"_oneAt_0${r0}_${rcut}_${n}_${l}_"$grid".soapAll 
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_oneAt_0${r0}_${rcut}_${n}_${l}_$grid.soapAll \n was produced!"

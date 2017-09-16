@@ -27,25 +27,15 @@ nAtoms=$(echo "$atoms" | wc -w)
 echo "$nAtoms"
 
 if [ $nAtoms -eq 2 ];then
-    ./surfaceTwo $FILE $atoms 0.5 5 3 9 $grid 2.8  | tee "$FILE"_twoAt_05_5_3_9_"$grid"_28.surfsoap| zenity --progress --auto-close
+    ./surfaceTwo $FILE $atoms 0.5 5 3 9 $grid 2.8  > "$FILE"_twoAt_05_5_3_9_"$grid"_28.surfsoap
 
-
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Update canceled."
-    fi 
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_twoAt_05_5_3_9_$grid.surfsoap \nwas produced!"
 
  elif [ $nAtoms -eq 1 ]
     then
-    ./surfaceOne $FILE 0.5 5 3 9 $grid 2.8  | tee "$FILE"_oneAt_05_5_3_9_"$grid"_28.surfsoap| zenity --progress --auto-close
-
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Update canceled."
-    fi 
+    ./surfaceOne $FILE 0.5 5 3 9 $grid 2.8  > "$FILE"_oneAt_05_5_3_9_"$grid"_28.surfsoap
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_oneAt_05_5_3_9_$grid_28.surfsoap"

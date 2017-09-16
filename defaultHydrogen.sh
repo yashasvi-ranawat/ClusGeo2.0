@@ -37,25 +37,15 @@ nAtoms=$(echo "$atoms" | wc -w)
 echo "$nAtoms"
 
 if [ $nAtoms -eq 2 ];then
-    ./Hsoap $FILE $atoms $FILE2 0.5 5 3 9 $grid | tee "$FILE"_twoAt_05_5_3_9_"$grid".Hsoap| zenity --progress --auto-close --pulsate
+    ./Hsoap $FILE $atoms $FILE2 0.5 5 3 9 $grid > "$FILE"_twoAt_05_5_3_9_"$grid".Hsoap
 
-
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Update canceled."
-    fi 
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_twoAt_05_5_3_9_$grid.Hsoap \nwas produced!"
 
  elif [ $nAtoms -eq 1 ]
     then
-    ./HsoapOne $FILE $FILE2 0.5 5 3 9 $grid | tee "$FILE"_oneAt_05_5_3_9_"$grid".Hsoap| zenity --progress --auto-close --pulsate
-
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Update canceled."
-    fi 
+    ./HsoapOne $FILE $FILE2 0.5 5 3 9 $grid > "$FILE"_oneAt_05_5_3_9_"$grid".Hsoap
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_oneAt_05_5_3_9_$grid.Hsoap"

@@ -13,7 +13,7 @@ esac
 thresh=$(zenity 2>/dev/null --scale --text "Pic Soap threashold. (0.00x)" --min-value=1 --max-value=9 --value=1 --step 1)
 case $? in
          0)
-		echo "You selected grid level = $grid.";;
+		echo "You selected grid level = $thresh.";;
          1)
                 echo "No value selected."; exit ;;
         -1)
@@ -22,13 +22,9 @@ esac
 
 
 
-    ./elimSurf $FILE 0.00${thresh}  | tee "$FILE"_000${thresh}_"$grid".surfUniq| zenity --progress --auto-close
+    ./elimSurf $FILE 0.000${thresh} > "$FILE"_000${thresh}_"$grid".surfUniq
 
 
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Canceled."
-    fi 
 FILE2=`zenity 2>/dev/null --file-selection --title="Select the .xyz file corresponding to the .surfsoap file."`
 case $? in
          0)

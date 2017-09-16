@@ -39,7 +39,7 @@ esac
 #grid=$((gridLevel*100));
 
 
-./scanH $FILE 150 0.5 2.8 1.2 2.2 | tee "$FILE"_150_05_28_12_22.Hscan | zenity --progress --pulsate
+./scanH $FILE 150 0.5 2.8 1.2 2.2 > "$FILE"_150_05_28_12_22.Hscan 
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_150_05_27_12_22.Hscan was produced!"

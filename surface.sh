@@ -78,25 +78,15 @@ nAtoms=$(echo "$atoms" | wc -w)
 echo "$nAtoms"
 
 if [ $nAtoms -eq 2 ];then
-    ./surfaceTwo $FILE $atoms 0.$r0 $rcut $n $l $grid 2.$b  | tee "$FILE"_twoAt_0${r0}_${rcut}_${n}_${l}_"$grid"_2$b.surfsoap | zenity --progress --auto-close
+    ./surfaceTwo $FILE $atoms 0.$r0 $rcut $n $l $grid 2.$b  > "$FILE"_twoAt_0${r0}_${rcut}_${n}_${l}_"$grid"_2$b.surfsoap 
 
-
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Update canceled."
-    fi 
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_twoAt_0${r0}_${rcut}_${n}_${l}_${grid}_2$b.surfsoap \nwas produced!"
 
  elif [ $nAtoms -eq 1 ]
     then
-    ./surfaceOne $FILE 0.$r0 $rcut $n $l $grid 2.$b  | tee "$FILE"_oneAt_0${r0}_${rcut}_${n}_${l}_"$grid"_2$b.surfsoap | zenity --progress --auto-close
-
-    if [ "$?" = -1 ] ; then
-            zenity --error \
-              --text="Update canceled."
-    fi 
+    ./surfaceOne $FILE 0.$r0 $rcut $n $l $grid 2.$b  > "$FILE"_oneAt_0${r0}_${rcut}_${n}_${l}_"$grid"_2$b.surfsoap 
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_oneAt_0${r0}_${rcut}_${n}_${l}_${grid}_2$b.surfsoap"
