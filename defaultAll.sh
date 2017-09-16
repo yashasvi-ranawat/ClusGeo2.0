@@ -31,6 +31,7 @@ if [ $nAtoms -eq 2 ];then
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_twoAt_05_5_3_9_$grid.soapAll \n was produced!"
+    echo "${FILE}_twoAt_05_5_3_9_$grid.soapAll \n was produced!"
 
  elif [ $nAtoms -eq 1 ]
     then
@@ -38,6 +39,7 @@ if [ $nAtoms -eq 2 ];then
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_oneAt_05_5_3_3_$grid.soapAll \n was produced!"
+    echo "${FILE}_oneAt_05_5_3_3_$grid.soapAll \n was produced!"
 
  else
      echo "Error... Type1"

@@ -63,6 +63,7 @@ esac
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_${gridLevel}_0${spa}_2${b}_1${minDist}_2${maxDist}.Hscan was produced!"
+    echo "${FILE}_${gridLevel}_0${spa}_2${b}_1${minDist}_2${maxDist}.Hscan was produced!"
 
 
 

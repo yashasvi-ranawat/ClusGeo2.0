@@ -42,13 +42,15 @@ if [ $nAtoms -eq 2 ];then
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_twoAt_05_5_3_9_$grid.Hsoap \nwas produced!"
+    echo "${FILE}_twoAt_05_5_3_9_$grid.Hsoap \nwas produced!"
 
  elif [ $nAtoms -eq 1 ]
     then
     ./HsoapOne $FILE $FILE2 0.5 5 3 9 $grid > "$FILE"_oneAt_05_5_3_9_"$grid".Hsoap
 
     zenity 2>/dev/null  --info \
-    --text="${FILE}_oneAt_05_5_3_9_$grid.Hsoap"
+    --text="${FILE}_oneAt_05_5_3_9_$grid.Hsoap\nwas produced!"
+    echo "${FILE}_oneAt_05_5_3_9_$grid.Hsoap\nwas produced!"
 
  else
      echo "Error... Type1"

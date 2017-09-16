@@ -38,8 +38,8 @@ esac
 #    while read p ; do sed -i "$(($p+2))s/^\s*[A-Za-z]./Lr/" $FILE2.check ; done <"$FILE"_00${thresh}_"$grid".Huniq
 
     zenity 2>/dev/null  --info \
-    --text="${FILE}_00${thresh}_$grid.Huniq \n was produced. 
-    which  atoms are Unique."
+    --text="${FILE}_00${thresh}_$grid.Huniq \n was produced. which  atoms are Unique."
+    echo "${FILE}_00${thresh}_$grid.Huniq \n was produced. which  atoms are Unique."
 
 
 

@@ -43,6 +43,7 @@ esac
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_150_05_27_12_22.Hscan was produced!"
+    echo "${FILE}_150_05_27_12_22.Hscan was produced!"
 
 
 

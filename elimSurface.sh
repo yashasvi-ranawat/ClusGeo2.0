@@ -42,3 +42,4 @@ cp $FILE2.check check.xyz
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_000${thresh}_$grid.surfUniq\nand \n $FILE2.check \n was produced. Please check check.xyz file to see which surface atoms are Unique."
+    echo "${FILE}_000${thresh}_$grid.surfUniq\nand \n $FILE2.check \n was produced. Please check check.xyz file to see which surface atoms are Unique."

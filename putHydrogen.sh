@@ -34,3 +34,4 @@ esac
 
     zenity 2>/dev/null  --info \
     --text="${FILE}_1$dist.Hput was produced!\n Check it by catting it onto the .xyz file."
+    echo "${FILE}_1$dist.Hput was produced!\n Check it by catting it onto the .xyz file."
