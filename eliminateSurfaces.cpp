@@ -31,6 +31,7 @@ int main(int argc, char** argv) {
   for(int j=0; j < soapMat.n_rows ; j++){
     if(stillExists(j) > 0.5){
       cout << soapMatAll(j,0) + 1 << endl;
+//      cout << soapMatAll(j,0)  << endl;
       for(int i=0; i < soapMat.n_rows ; i++){
           multMe = soapMat.row(j) - soapMat.row(i);
           buffer = sqrt(multMe*multMe.t())/soapMat.n_cols;

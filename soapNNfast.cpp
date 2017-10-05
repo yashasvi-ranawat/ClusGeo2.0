@@ -59,19 +59,19 @@ int main(int argc, char** argv) {
   cube Y;
   cube Z;
   cube GLC(GL.n_rows,GL.n_rows,GL.n_rows); // GL weights in 3D which is just an outer product of GL;
-  if(rcut <= 1.5){GL.load("LegendreWeights/parameters20.txt");GLC.load("BI/GLC20.bi");} //
-  else if (rcut >1.5 && rcut <= 2.5 ){GL.load("LegendreWeights/parameters30.txt");GLC.load("BI/GLC30.bi");} //
-  else if (rcut >2.5 && rcut <= 3.5 ){GL.load("LegendreWeights/parameters40.txt");GLC.load("BI/GLC40.bi");} //
-  else if (rcut >3.5 && rcut <= 4.5 ){GL.load("LegendreWeights/parameters50.txt");GLC.load("BI/GLC50.bi");} //
-  else if (rcut >4.5 && rcut <= 5.5 ){GL.load("LegendreWeights/parameters60.txt");  GLC.load("BI/GLC60.bi");}//
-  else if (rcut >5.5 && rcut <= 6.5 ){GL.load("LegendreWeights/parameters70.txt");  GLC.load("BI/GLC70.bi");}//
-  else if (rcut >6.5 && rcut <= 7.5 ){GL.load("LegendreWeights/parameters80.txt");GLC.load("BI/GLC80.bi");} //
-  else if (rcut >7.5 && rcut <= 8.5 ){GL.load("LegendreWeights/parameters90.txt");GLC.load("BI/GLC90.bi");} //
-  else if (rcut >8.5 && rcut <= 9.5 ){ GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");} //
-  else if (rcut >9.5 && rcut <= 10.5 ){GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");}//
-  else    {cout << "Error::rcut too large..\n Exiting.." << cout; exit(0);}
+//  if(rcut <= 1.5){GL.load("LegendreWeights/parameters20.txt");GLC.load("BI/GLC20.bi");} //
+//  else if (rcut >1.5 && rcut <= 2.5 ){GL.load("LegendreWeights/parameters30.txt");GLC.load("BI/GLC30.bi");} //
+//  else if (rcut >2.5 && rcut <= 3.5 ){GL.load("LegendreWeights/parameters40.txt");GLC.load("BI/GLC40.bi");} //
+//  else if (rcut >3.5 && rcut <= 4.5 ){GL.load("LegendreWeights/parameters50.txt");GLC.load("BI/GLC50.bi");} //
+//  else if (rcut >4.5 && rcut <= 5.5 ){GL.load("LegendreWeights/parameters60.txt");  GLC.load("BI/GLC60.bi");}//
+//  else if (rcut >5.5 && rcut <= 6.5 ){GL.load("LegendreWeights/parameters70.txt");  GLC.load("BI/GLC70.bi");}//
+//  else if (rcut >6.5 && rcut <= 7.5 ){GL.load("LegendreWeights/parameters80.txt");GLC.load("BI/GLC80.bi");} //
+//  else if (rcut >7.5 && rcut <= 8.5 ){GL.load("LegendreWeights/parameters90.txt");GLC.load("BI/GLC90.bi");} //
+//  else if (rcut >8.5 && rcut <= 9.5 ){ GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");} //
+//  else if (rcut >9.5 && rcut <= 10.5 ){GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");}//
+//  else    {cout << "Error::rcut too large..\n Exiting.." << cout; exit(0);}
 
-//  GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");//
+  GL.load("LegendreWeights/parameters50.txt");GLC.load("BI/GLC50.bi");//
 
 // Getting R, Theta and Phi rescaled for the Gaull-Legendre quadrature
   vec R = rcut*0.5*GL.col(0) + rcut*0.5 ;
