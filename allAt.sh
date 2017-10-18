@@ -1,85 +1,27 @@
 #!/bin/sh
 
-FILE=`zenity 2>/dev/null --file-selection --title="Select an xyz File."`
-case $? in
-         0)
-                echo "\"$FILE\" selected.";;
-         1)
-                echo "No file selected."; exit;;
-        -1)
-                echo "An unexpected error has occurred.";exit;;
-esac
-r0=$(zenity 2>/dev/null  --scale --text "Pic a bohr radius. This defines the shape of the basis functions.(0.x)" \
---min-value=1 --max-value=9 --value=5 --step 1)
-case $? in
-         0)
-		echo "You selected r0 = $r0.";;
-         1)
-                echo "No value selected."; exit ;;
-        -1)
-                echo "An unexpected error has occurred."; exit;;
-esac
-
-rcut=$(zenity 2>/dev/null  --scale --text "Pic a Soap cuttof in Angs.\n MAX is 10.\n For large cutoff, make sure to use a dense grid. " --min-value=1 --max-value=10 --value=5 --step 1)
-case $? in
-         0)
-		echo "You selected rcut = $rcut.";;
-         1)
-                echo "No value selected."; exit ;;
-        -1)
-                echo "An unexpected error has occurred."; exit;;
-esac
-
-l=$(zenity 2>/dev/null --scale --text "Pic the number for spherical harmonic basis functions.\n Between 1 and 9. \n O(N^2) " --min-value=1 --max-value=9 --value=9 --step 1)
-case $? in
-         0)
-		echo "You selected l = $l.";;
-         1)
-                echo "No value selected."; exit ;;
-        -1)
-                echo "An unexpected error has occurred."; exit;;
-esac
-
-n=$(zenity 2>/dev/null --scale --text "Pic the number for radial basis functions.\n Between 1 and 3. Default is 3 \n O(N) " --min-value=1 --max-value=3 --value=3 --step 1)
-case $? in
-         0)
-		echo "You selected n = $n.";;
-         1)
-                echo "No value selected."; exit ;;
-        -1)
-                echo "An unexpected error has occurred."; exit;;
-esac
-
-grid=$(zenity 2>/dev/null --scale --text "Pic the grid density.\n Usually the smallest is accurate enough. O(N^3)" --min-value=1 --max-value=3 --value=1 --step 1)
-case $? in
-         0)
-		echo "You selected grid density= $grid.";;
-         1)
-                echo "No value selected."; exit ;;
-        -1)
-                echo "An unexpected error has occurred."; exit;;
-esac
-
-atoms=$(zenity 2>/dev/null --height=400 --list --text "Select Atom Types." --checklist  --column "Check" --column "Atom" TRUE "Au" TRUE "Cu" FALSE "Mo" FALSE "S" FALSE "Ni" FALSE "P" FALSE "Pt" FALSE "Co" FALSE "Cr" FALSE "Mn" FALSE "Ti" FALSE "O" FALSE "Fe"  --separator=" ")
+read -p "Select an xyz File: " FILE
+read -p "Pic a bohr radius. This defines the shape of the basis functions. [0.1-1.0]: " r0
+read -p "Pic a Soap cuttof in Angs.[1.0-10.0]: " rcut
+l=9
+n=3
+read -p "Pic the grid density. Usually the smallest is accurate enough. [1-6]: " grid
+read -p "Select Atom Types:ex. type \"Au Cu\" without the double quotations: " atoms
 
 nAtoms=$(echo "$atoms" | wc -w)
 
 echo "$nAtoms"
 
 if [ $nAtoms -eq 2 ];then
-    ./allTwo $FILE $atoms 0.$r0 $rcut $n $l $grid > "$FILE"_twoAt_05_${rcut}_${n}_${l}_"$grid".soapAll 
+    ./allTwo $FILE $atoms $r0 $rcut $n $l $grid > "$FILE"_twoAt_05_${rcut}_${n}_${l}_"$grid".soapAll 
 
-    zenity 2>/dev/null  --info \
-    --text="${FILE}_twoAt_0${r0}_${rcut}_${n}_${l}_$grid.soapAll \n was produced!"
-    echo "${FILE}_twoAt_0${r0}_${rcut}_${n}_${l}_$grid.soapAll \n was produced!"
+    echo "${FILE}_twoAt_${r0}_${rcut}_${n}_${l}_$grid.soapAll  was produced!"
 
  elif [ $nAtoms -eq 1 ]
     then
-    ./allOne $FILE 0.$r0 $rcut $n $l $grid > "$FILE"_oneAt_0${r0}_${rcut}_${n}_${l}_"$grid".soapAll 
+    ./allOne $FILE $r0 $rcut $n $l $grid > "$FILE"_oneAt_${r0}_${rcut}_${n}_${l}_"$grid".soapAll 
 
-    zenity 2>/dev/null  --info \
-    --text="${FILE}_oneAt_0${r0}_${rcut}_${n}_${l}_$grid.soapAll \n was produced!"
-    echo "${FILE}_oneAt_0${r0}_${rcut}_${n}_${l}_$grid.soapAll \n was produced!"
+    echo "${FILE}_oneAt_${r0}_${rcut}_${n}_${l}_$grid.soapAll  was produced!"
 
  else
      echo "Error... Type1"
