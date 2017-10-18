@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
-read -p "Select an xyz File: " FILE
-read -p "Pic a bohr radius. This defines the shape of the basis functions. [0.1-1.0]: " r0
-read -p "Pic a Soap cuttof in Angs.[1.0-10.0]: " rcut
+read -e -p "Select an xyz File: " FILE
+read -e -p "Pic a bohr radius. This defines the shape of the basis functions. [0.1-1.0]: " r0
+read -e -p "Pic a Soap cuttof in Angs.[1.0-10.0]: " rcut
 l=9
 n=3
-read -p "Pic the grid density. Usually the smallest is accurate enough. [1-6]: " grid
-read -p "Select Atom Types:ex. type \"Au Cu\" without the double quotations: " atoms
+read -e -p "Pic the grid density. Usually the smallest is accurate enough. [1-6]: " grid
+read -e -p "Select Atom Types:ex. type \"Au Cu\" without the double quotations: " atoms
 
 nAtoms=$(echo "$atoms" | wc -w)
 

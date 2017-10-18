@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
-read -p "Select an xyz File: " FILE
+read -e -p "Select an xyz File: " FILE
 
-read -p "Pic a grid density.Usually the smallest is accurate enough. [1-3]" grid
+read -e -p "Pic a grid density.Usually the smallest is accurate enough. [1-3]" grid
 
-read -p "Select Atom Types.ex. type \"Au Cu\" without the quotation marks: " atoms
+read -e -p "Select Atom Types.ex. type \"Au Cu\" without the quotation marks: " atoms
 
 nAtoms=$(echo "$atoms" | wc -w)
 

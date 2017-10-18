@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-read -p "Select a .surfsoap File. Make sure that the file is in the right format (surfsoap format): " FILE
+read -e -p "Select a .surfsoap File. Make sure that the file is in the right format (surfsoap format): " FILE
 
-read -p "Pic Soap threashold. [0.0 - Infinity]: " thresh
+read -e -p "Pic Soap threashold. [0.0 - Infinity]: " thresh
 
 
 

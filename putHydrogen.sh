@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-read -p "Select a list of atoms such as a .surfUniq file." FILE
+read -e -p "Select a list of atoms such as a .surfUniq file." FILE
 
-read -p "Select distance from surf atom. [1.0 - 5.0]" dist
-read -p "Select the .xyz file corresponding to the .surfUniq file: " FILE2
+read -e -p "Select distance from surf atom. [1.0 - 5.0]" dist
+read -e -p "Select the .xyz file corresponding to the .surfUniq file: " FILE2
 
 ./putH $FILE $FILE2 $dist > ${FILE}_$dist.Hput 
 

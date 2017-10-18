@@ -1,19 +1,19 @@
-#!/bin/sh
+#!/bin/bash
 
-read -p "Select a .xyz File: " FILE
+read -e -p "Select a .xyz File: " FILE
 
-read -p "Select a .Hscan File. You need to do a hydrogen scan first: " FILE2
+read -e -p "Select a .Hscan File. You need to do a hydrogen scan first: " FILE2
 
-read -p "Pic a bohr radius. This defines the shape of the basis functions. [0.01 - 1.0]" r0
+read -e -p "Pic a bohr radius. This defines the shape of the basis functions. [0.01 - 1.0]" r0
 
-read -p "Pic a Soap cuttof. MAX is 10.0, for large cutoff, make sure to use a dense grid.[1.0 - 10.0] " rcut
+read -e -p "Pic a Soap cuttof. MAX is 10.0, for large cutoff, make sure to use a dense grid.[1.0 - 10.0] " rcut
 
 l=9
 n=3
 
-read -p "Pic a grid density. [1-7]" grid
+read -e -p "Pic a grid density. [1-7]" grid
 
-read -p "Select Atom Types. e.x. type \"Au Cu \" without the quotations. " atoms
+read -e -p "Select Atom Types. e.x. type \"Au Cu \" without the quotations. " atoms
 
 nAtoms=$(echo "$atoms" | wc -w)
 
