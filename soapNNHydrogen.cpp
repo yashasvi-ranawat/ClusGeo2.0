@@ -78,7 +78,6 @@ int main(int argc, char** argv) {
   X = getSphericalToCartCubeX( R, The, Phi);
   Y = getSphericalToCartCubeY( R, The, Phi);
   Z = getSphericalToCartCubeZ( R, The, Phi);
-
 //----Holding memory places.----
   double sumMe = 0;
   mat coord = getPos(argv[1]);

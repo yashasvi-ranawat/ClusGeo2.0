@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
   // Flexible variables:
   mat hydrogenPos;
   hydrogenPos.load(argv[4]); // [0.1 - 5.0] EXP. BEST = 0.5 5 3 5
-  double ao = 0.5;
+  double ao = 0.1;
   double rcut = 10.0; // [7.0 - 100.0] -> make sure to use fine grid with large cut
   int radialN = 3;// atoi(argv[5]); // [1-4]
   int lMax = 9;// atoi(argv[6]) ; // [1-9]
@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
 //  else if (rcut >9.5 && rcut <= 10.5 ){GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");}//
 //  else    {cout << "Error::rcut too large..\n Exiting.." << cout; exit(0);}
 
-  GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");//
+  GL.load("LegendreWeights/parameters70.txt");GLC.load("BI/GLC70.bi");//
 
 //  if(grid == 0 ){GL.load("LegendreWeights/parameters20.txt");GLC.load("BI/GLC20.bi");} //
 //  else if (grid == 1){GL.load("LegendreWeights/parameters30.txt");GLC.load("BI/GLC30.bi");} //
@@ -148,7 +148,7 @@ int main(int argc, char** argv) {
 
 // FOR For
 for(int bigI = 0; bigI < hydrogenPos.n_rows; bigI++){
-    ao=0.5;
+    ao=0.1;
 
 // Adding Hydrogen at the end
   coord_a.row(coord_a.n_rows - 1) = hydrogenPos.row(bigI);
@@ -173,9 +173,8 @@ for(int bigI = 0; bigI < hydrogenPos.n_rows; bigI++){
   intMeb = rho_b%GLC;
   intAll = rhoAll%GLC;
 
-while(ao < 5.11111112){
+while(ao < 0.51111112){
   globalI = 0;
-  ao = 0.5 + ao;
   
   norm = pow(sqrt(z/ao),3);
   gn.col(0)= hydrogenRDF(1, z,ao,norm,R); // a0 = 0.5, Norm. Const. = 2^(3/2)
@@ -245,6 +244,7 @@ while(ao < 5.11111112){
     }
   }
 //cout << bigI << endl;
+  ao = 0.1 + ao;
 }
 cout << endl;
 }
