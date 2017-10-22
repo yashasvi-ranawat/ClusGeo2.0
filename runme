@@ -1,69 +1,53 @@
 #!/bin/sh
 
 
-a=$(zenity 2>/dev/null --list \
-  --title="How may I serve you today?" \
-  --column="Selec. #" --column="Description" \
-  --width=600 \
-  --height=800 \
-    1 "Scan Surface Hydrogen." \
-    2 "Get Soap Matrix on the Cluster Surface." \
-    3 "Get Soap Matrix on the Whole Cluster. " \
-    4 "Get Soap Matrix of a Hydrogen Scan. Must do (1) before . " \
-    5 "Get Unique Surface Atoms. Must do (2) before ." \
-    6 "Get Unique Surface Hydrogens. Must do (4) before ."\
-    7 "Set Hydrogen Atoms on Unique Surface Atom. Must do (6) before."
-    )
+echo "How may I serve you today?\n\n\
+    1 Scan Surface Hydrogen.\n\
+    2 Scan Surface Hydrogen.\n\
+    3 Scan Surface Hydrogen.\n\
+    4 Scan Surface Hydrogen.\n\
+    5 Get Soap Matrix on the Cluster Surface.\n\
+    6 Get Soap Matrix on the Whole Cluster.\n\
+
+    7 Get Soap Matrix of a Hydrogen Scan. Must do (1) before.\n\
+    8 Get Unique Surface Atoms. Must do (2) before .\n\
+    9 Get Unique Surface Hydrogens. Must do (4) before.\n\
+    10 Set Hydrogen Atoms on Unique Surface Atom. Must do (5) before.\n\n"
+
+read -p  ":  " a
 q=1
 
-if [ $a -lt 5 ]; then
-zenity 2>/dev/null --question \
---text="Would you like to use default values?" 
-case $? in 
-  0) q=1;; 
-  1) q=0;; 
-  *) echo "Error..";; 
-esac
-fi
-
-if [ $q -eq 1 ]; then
-  if [ $a -eq 1 ]; then
-    ./defaultScan.sh
-  fi
-
-  if [ $a -eq 2 ]; then
-    ./defaultSurface.sh 
-  fi
-
-  if [ $a -eq 3 ]; then
-    ./defaultAll.sh 
-  fi
-  if [ $a -eq 4 ]; then
-    ./defaultHydrogen.sh 
-  fi
-  if [ $a -eq 5 ]; then
-    ./elimSurface.sh 
-  fi
-  if [ $a -eq 6 ]; then
-    ./elimHydrogen.sh 
-  fi
-  if [ $a -eq 7 ]; then
-    ./putHydrogen.sh
-  fi
-elif [ $q -eq 0 ]; then
   if [ $a -eq 1 ]; then
     ./scanHydrogen.sh
   fi
-
   if [ $a -eq 2 ]; then
+    ./getEta1.sh
+  fi
+  if [ $a -eq 3 ]; then
+    ./getEta2.sh
+  fi
+  if [ $a -eq 4 ]; then
+    ./getEta3.sh
+  fi
+
+  if [ $a -eq 5 ]; then
     ./surface.sh 
   fi
 
-  if [ $a -eq 3 ]; then
+  if [ $a -eq 6 ]; then
     ./allAt.sh 
   fi
+  if [ $a -eq 7 ]; then
+    ./soapHydrogen.sh 
+  fi
+  if [ $a -eq 8 ]; then
+    ./elimSurface.sh 
+  fi
+  if [ $a -eq 9 ]; then
+    ./elimHydrogen.sh 
+  fi
+  if [ $a -eq 10 ]; then
+    ./putHydrogen.sh
+  fi
 
-else
-  echo "ERROR"
-fi
 

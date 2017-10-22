@@ -75,12 +75,9 @@ int main(int argc, char** argv) {
   newJ = 0;
 
 
+//------------------------------------------------------------------------------------------------------------
   for(int i=0; i < coord_a.n_rows; i++)  { 
-    for(int j=i+1; j < coord_a.n_rows; j++)  { 
       buffvec1 = coord_a.row(i);
-      buffvec2 = coord_a.row(j);
-      bufval = sqrt((buffvec1- buffvec2)*(buffvec1 - buffvec2).t());
-      if(bufval(0) <3){
         for(int t=0; t < The.n_elem; t++)  { 
           for(int p=0; p < Phi.n_elem; p++)  { 
 
@@ -88,7 +85,6 @@ int main(int argc, char** argv) {
             buffvecR(1)= sin(The(t))*sin(Phi(p)); 
             buffvecR(2)= cos(The(t)); 
             DVecNew = buffvec1 + dist1*buffvecR;
-            bufval = sqrt((DVecNew- buffvec2)*(DVecNew - buffvec2).t());
              
             for(int x=0; x < coord.n_rows; x++)  { 
               allDist = sqrt((DVecNew- coord.row(x))*(DVecNew - coord.row(x)).t());
@@ -96,9 +92,7 @@ int main(int argc, char** argv) {
               newPot = newPot + 1/(allDist%allDist);
             }
 
-            
-
-            if(bufval(0) < (dist1 + epsilon) && bufval(0) > (dist1 - epsilon) && newPot(0) < bestPot(0)){
+            if(newPot(0) < bestPot(0)){
               bestPot = newPot;
               BestVec = DVecNew;
             }
@@ -107,18 +101,10 @@ int main(int argc, char** argv) {
         }
            bestPot(0)= 1e100;
            BestVec.print();
-      }
     }
-  }
-
 //------------------------------------------------------------------------------------------------------------
-
   for(int i=0; i < coord_b.n_rows; i++)  { 
-    for(int j=i+1; j < coord_b.n_rows; j++)  { 
       buffvec1 = coord_b.row(i);
-      buffvec2 = coord_b.row(j);
-      bufval = sqrt((buffvec1- buffvec2)*(buffvec1 - buffvec2).t());
-      if(bufval(0) <3){
         for(int t=0; t < The.n_elem; t++)  { 
           for(int p=0; p < Phi.n_elem; p++)  { 
 
@@ -126,17 +112,13 @@ int main(int argc, char** argv) {
             buffvecR(1)= sin(The(t))*sin(Phi(p)); 
             buffvecR(2)= cos(The(t)); 
             DVecNew = buffvec1 + dist2*buffvecR;
-            bufval = sqrt((DVecNew- buffvec2)*(DVecNew - buffvec2).t());
              
             for(int x=0; x < coord.n_rows; x++)  { 
               allDist = sqrt((DVecNew- coord.row(x))*(DVecNew - coord.row(x)).t());
-
               newPot = newPot + 1/(allDist%allDist);
             }
 
-            
-
-            if(bufval(0) < (dist2 + epsilon) && bufval(0) > (dist2 - epsilon) && newPot(0) < bestPot(0)){
+            if(newPot(0) < bestPot(0)){
               bestPot = newPot;
               BestVec = DVecNew;
             }
@@ -145,46 +127,8 @@ int main(int argc, char** argv) {
         }
            bestPot(0)= 1e100;
            BestVec.print();
-      }
     }
-  }
-
 //------------------------------------------------------------------------------------------------------------
-
-  for(int i=0; i < coord_a.n_rows; i++)  { 
-    for(int j=0; j < coord_b.n_rows; j++)  { 
-      buffvec1 = coord_a.row(i);
-      buffvec2 = coord_b.row(j);
-      bufval = sqrt((buffvec1- buffvec2)*(buffvec1 - buffvec2).t());
-      if(bufval(0) <3){
-        for(int t=0; t < The.n_elem; t++)  { 
-          for(int p=0; p < Phi.n_elem; p++)  { 
-
-            buffvecR(0)= sin(The(t))*cos(Phi(p)); 
-            buffvecR(1)= sin(The(t))*sin(Phi(p)); 
-            buffvecR(2)= cos(The(t)); 
-            DVecNew = buffvec1 + dist1*buffvecR;
-            bufval = sqrt((DVecNew- buffvec2)*(DVecNew - buffvec2).t());
-             
-            for(int x=0; x < coord.n_rows; x++)  { 
-              allDist = sqrt((DVecNew- coord.row(x))*(DVecNew - coord.row(x)).t());
-
-              newPot = newPot + 1/(allDist%allDist);
-            }
-
-            if(bufval(0) < (dist2 + epsilon) && bufval(0) > (dist2 - epsilon) && newPot(0) < bestPot(0)){
-              bestPot = newPot;
-              BestVec = DVecNew;
-            }
-           newPot(0)= 0;
-          }
-        }
-           bestPot(0)= 1e100;
-           BestVec.print();
-      }
-    }
-  }
-
 
 return 0;
 }
