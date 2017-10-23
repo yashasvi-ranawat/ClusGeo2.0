@@ -14,15 +14,15 @@ nAtoms=$(echo "$atoms" | wc -w)
 echo "$nAtoms"
 
 if [ $nAtoms -eq 2 ];then
-    ./Eta1 $FILE $atoms $dist1 $dist2 $b  > "$FILE".eta1H 
+    ./Eta2 $FILE $atoms $dist1 $dist2 $b  > "$FILE".eta2H 
 
-    echo "${FILE}.eta1H \nwas produced!"
+    echo "${FILE}.eta2H \nwas produced!"
 
  elif [ $nAtoms -eq 1 ]
     then
-    ./Eta1One $FILE $dist1 $b  > "$FILE"One.eta1H 
+    ./Eta2One $FILE $dist1 $b  > "$FILE"One.eta2H 
 
-    echo "${FILE}One.eta1H \nwas produced!"
+    echo "${FILE}One.eta2H \nwas produced!"
 
  else
      echo "Error... Type1"

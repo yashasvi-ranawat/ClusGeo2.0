@@ -3,9 +3,9 @@
 
 echo "How may I serve you today?\n\n\
     1 Scan Surface Hydrogen.\n\
-    2 Scan Surface Hydrogen.\n\
-    3 Scan Surface Hydrogen.\n\
-    4 Scan Surface Hydrogen.\n\
+    2 Get Eta1 Hs.\n\
+    3 Get Eta2 Hs.\n\
+    4 Get Eta3 Hs.\n\
     5 Get Soap Matrix on the Cluster Surface.\n\
     6 Get Soap Matrix on the Whole Cluster.\n\
 
