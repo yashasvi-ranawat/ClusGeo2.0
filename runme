@@ -9,7 +9,7 @@ echo "How may I serve you today?\n\n\
     5 Get Soap Matrix on the Cluster Surface.\n\
     6 Get Soap Matrix on the Whole Cluster.\n\
 
-    7 Get Soap Matrix of a Hydrogen Scan. Must do (1) before.\n\
+    7 Get Soap Matrix of a Hydrogen Scan. Must do (1,2,4 or 4) before.\n\
     8 Get Unique Surface Atoms. Must do (2) before .\n\
     9 Get Unique Surface Hydrogens. Must do (4) before.\n\
     10 Set Hydrogen Atoms on Unique Surface Atom. Must do (5) before.\n\n"
