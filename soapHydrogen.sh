@@ -1,7 +1,7 @@
 #!/bin/bash
 
 read -e -p "Select a .xyz File: " FILE
-read -e -p "Select a .Hscan File. You need to do a hydrogen scan first: " FILE2
+read -e -p "Select a .Hscan or .etaHx File. You need to do a hydrogen scan first: " FILE2
 read -e -p "Pic a grid density. Usually the smallest is accurate enough:[1-6] " grid
 read -e -p "Select Atom Types. e.x. type \"Au Cu\" without the quotations: " atoms
 read -e -p "Select the reach of the chemical environment.[1.0-10.0]" rcut
