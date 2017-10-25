@@ -12,7 +12,7 @@ read -e -p "Pic Soap threashold. [0.0 - Infinity]: " thresh
 read -p "Select the .xyz file corresponding to the .surfsoap file." FILE2
 cp $FILE2 "check_$FILE2"
 
-    while read p ; do sed -i "$(($p+2))s/^\s*[A-Za-z]./Lr/" $FILE2.check ; done <"$FILE"_${thresh}_"$grid".surfUniq
+    while read p ; do sed -i "$(($p+2))s/^\s*[A-Za-z]./Lr/" "check_$FILE2" ; done <"$FILE"_${thresh}_"$grid".surfUniq
 
 cp $FILE2.check check.xyz
 

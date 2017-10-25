@@ -14,7 +14,7 @@ nAtoms=$(echo "$atoms" | wc -w)
 echo "$nAtoms"
 
 if [ $nAtoms -eq 2 ];then
-    ./Eta1 $FILE $atoms $dist1 $dist2 $b  > "$FILE".eta1H 
+time    ./Eta1 $FILE $atoms $dist1 $dist2 $b  > "$FILE".eta1H 
 
     echo "${FILE}.eta1H \nwas produced!"
 
