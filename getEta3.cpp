@@ -16,10 +16,14 @@ int main(int argc, char** argv) {
 
 // Getting R, Theta and Phi rescaled for the Gaull-Legendre quadrature
   vec R = linspace<vec>(1.1 ,2.1,30);
-  vec The =linspace<vec>(0,pi,450);
-  vec Phi =linspace<vec>(0,2*pi,900);
+  vec The =linspace<vec>(0,pi,600);
+  vec Phi =linspace<vec>(0,2*pi,1000);
   double dist1 = atof(argv[4]);
   double dist2 = atof(argv[5]);
+
+  double maxDistApart = 3.5;
+
+
   double epsilon=0.01;
   double neighEpsi=0.01;
   double potDiff = 0.00;
@@ -92,7 +96,7 @@ int main(int argc, char** argv) {
         bufval2 = sqrt((buffvec1- buffvec3)*(buffvec1 - buffvec3).t());
         bufval3 = sqrt((buffvec2- buffvec3)*(buffvec2 - buffvec3).t());
 
-        if(bufval1(0) < 3 && bufval2(0) < 3 && bufval3(0) < 3){
+        if(bufval1(0) < maxDistApart && bufval2(0) <maxDistApart && bufval3(0) < 3){
           for(int t=0; t < The.n_elem; t++)  { 
             for(int p=0; p < Phi.n_elem; p++)  { 
 
@@ -143,7 +147,7 @@ int main(int argc, char** argv) {
         bufval2 = sqrt((buffvec1- buffvec3)*(buffvec1 - buffvec3).t());
         bufval3 = sqrt((buffvec2- buffvec3)*(buffvec2 - buffvec3).t());
 
-        if(bufval1(0) < 3 && bufval2(0) < 3 && bufval3(0) < 3){
+        if(bufval1(0) <maxDistApart && bufval2(0) <maxDistApart && bufval3(0) < maxDistApart){
           for(int t=0; t < The.n_elem; t++)  { 
             for(int p=0; p < Phi.n_elem; p++)  { 
 
@@ -194,7 +198,7 @@ int main(int argc, char** argv) {
         bufval2 = sqrt((buffvec1- buffvec3)*(buffvec1 - buffvec3).t());
         bufval3 = sqrt((buffvec2- buffvec3)*(buffvec2 - buffvec3).t());
 
-        if(bufval1(0) < 3 && bufval2(0) < 3 && bufval3(0) < 3){
+        if(bufval1(0) <maxDistApart && bufval2(0) <maxDistApart && bufval3(0) < maxDistApart){
           for(int t=0; t < The.n_elem; t++)  { 
             for(int p=0; p < Phi.n_elem; p++)  { 
 
@@ -245,7 +249,7 @@ int main(int argc, char** argv) {
         bufval2 = sqrt((buffvec1- buffvec3)*(buffvec1 - buffvec3).t());
         bufval3 = sqrt((buffvec2- buffvec3)*(buffvec2 - buffvec3).t());
 
-        if(bufval1(0) < 3 && bufval2(0) < 3 && bufval3(0) < 3){
+        if(bufval1(0) <maxDistApart && bufval2(0) <maxDistApart && bufval3(0) < 3){
           for(int t=0; t < The.n_elem; t++)  { 
             for(int p=0; p < Phi.n_elem; p++)  { 
 
