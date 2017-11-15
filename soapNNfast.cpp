@@ -116,6 +116,9 @@ int main(int argc, char** argv) {
    }
 
 // Adding Hydrogen at the end
+  coord(coord.n_rows - 1,0) = coord(coord.n_rows - 1,0) + 1000.0;
+  coord(coord.n_rows - 1,1) = coord(coord.n_rows - 1,1) + 1000.0;
+  coord(coord.n_rows - 1,2) = coord(coord.n_rows - 1,2) + 1000.0;
   coord_a.row(coord_a.n_rows - 1) = coord.row(coord.n_rows - 1);
   coord_b.row(coord_b.n_rows - 1) = coord.row(coord.n_rows - 1);
 

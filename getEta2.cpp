@@ -14,14 +14,16 @@ int main(int argc, char** argv) {
   double pi = 3.14159265358979324;
   double halfPi = 3.14159265358979324*0.5;
 
+  double neiDist = 3.6;
+
 // Getting R, Theta and Phi rescaled for the Gaull-Legendre quadrature
   vec R = linspace<vec>(1.1 ,2.1,30);
   vec The =linspace<vec>(0,pi,180);
   vec Phi =linspace<vec>(0,2*pi,360);
   double dist1 = atof(argv[4]);
   double dist2 = atof(argv[5]);
-  double epsilon=0.01;
-  double neighEpsi=0.01;
+  double epsilon=0.015;
+  double neighEpsi=0.015;
   double potDiff = 0.00;
   double bubble = atof(argv[6]);
 
@@ -80,7 +82,7 @@ int main(int argc, char** argv) {
       buffvec1 = coord_a.row(i);
       buffvec2 = coord_a.row(j);
       bufval = sqrt((buffvec1- buffvec2)*(buffvec1 - buffvec2).t());
-      if(bufval(0) <3){
+      if(bufval(0) < neiDist){
         for(int t=0; t < The.n_elem; t++)  { 
           for(int p=0; p < Phi.n_elem; p++)  { 
 
@@ -94,6 +96,7 @@ int main(int argc, char** argv) {
               allDist = sqrt((DVecNew- coord.row(x))*(DVecNew - coord.row(x)).t());
 
               newPot = newPot + 1/(allDist%allDist);
+//              newPot = newPot + 1/(allDist);
             }
 
             
@@ -118,7 +121,7 @@ int main(int argc, char** argv) {
       buffvec1 = coord_b.row(i);
       buffvec2 = coord_b.row(j);
       bufval = sqrt((buffvec1- buffvec2)*(buffvec1 - buffvec2).t());
-      if(bufval(0) <3){
+      if(bufval(0) <neiDist){
         for(int t=0; t < The.n_elem; t++)  { 
           for(int p=0; p < Phi.n_elem; p++)  { 
 
@@ -132,6 +135,7 @@ int main(int argc, char** argv) {
               allDist = sqrt((DVecNew- coord.row(x))*(DVecNew - coord.row(x)).t());
 
               newPot = newPot + 1/(allDist%allDist);
+//              newPot = newPot + 1/(allDist);
             }
 
             
@@ -156,7 +160,7 @@ int main(int argc, char** argv) {
       buffvec1 = coord_a.row(i);
       buffvec2 = coord_b.row(j);
       bufval = sqrt((buffvec1- buffvec2)*(buffvec1 - buffvec2).t());
-      if(bufval(0) <3){
+      if(bufval(0) <neiDist){
         for(int t=0; t < The.n_elem; t++)  { 
           for(int p=0; p < Phi.n_elem; p++)  { 
 
@@ -170,6 +174,7 @@ int main(int argc, char** argv) {
               allDist = sqrt((DVecNew- coord.row(x))*(DVecNew - coord.row(x)).t());
 
               newPot = newPot + 1/(allDist%allDist);
+//              newPot = newPot + 1/(allDist);
             }
 
             if(bufval(0) < (dist2 + epsilon) && bufval(0) > (dist2 - epsilon) && newPot(0) < bestPot(0)){
