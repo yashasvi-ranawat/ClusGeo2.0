@@ -14,5 +14,6 @@ all:
 	g++ getEta3.cpp -O3 -larmadillo -o Eta3
 	g++ getEta1One.cpp -O3 -larmadillo -o Eta1One
 	g++ getEta2One.cpp -O3 -larmadillo -o Eta2One
-	g++ getEta3One.cpp -O3 -larmadillo -o Eta3One
-
+	g++ getEta3One.cpp -O3 -larmadillo -o Eta3One 
+	g++ -O3 soapNNsurfaceTriple.cpp -larmadillo -o surfaceThree
+	g++ -O3 soapNNHydrogenTriple.cpp -larmadillo -o HsoapThree
