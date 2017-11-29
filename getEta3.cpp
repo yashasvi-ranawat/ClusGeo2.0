@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
   double dist1 = atof(argv[4]);
   double dist2 = atof(argv[5]);
 
-  double maxDistApart = 3.5;
+  double maxDistApart = 3.3;
 
 
   double epsilon=0.01;

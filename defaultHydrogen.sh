@@ -21,8 +21,14 @@ if [ $nAtoms -eq 2 ];then
 
     echo "${FILE}_oneAt_05_5_3_9_$grid.Hsoap\nwas produced!"
 
+ elif [ $nAtoms -eq 3 ]
+    then
+    ./HsoapThree $FILE $atoms $FILE2 0.5 5 3 9 $grid > "$FILE"_ThreeAt_05_5_3_9_"$grid".Hsoap
+
+    echo "${FILE}_ThreeAt_05_5_3_9_$grid.Hsoap\nwas produced!"
+
  else
-     echo "Error... Type1"
+     echo "Error: Check Number of Atoms in Input."
 fi
 
 

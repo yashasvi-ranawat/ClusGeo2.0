@@ -131,6 +131,7 @@ int main(int argc, char** argv) {
   cube Y9 = getY(9,The, Phi);
 
 //cout << "CAC" << endl;  
+
   vec Cbuff(3); // for type a and type b
 
 //Finding where atom A and atom B are in .xyz.
@@ -141,7 +142,7 @@ int main(int argc, char** argv) {
      if(type[i] == argv[3] ){typeB(i) =1;}
    }
   for(int i=0; i < coord.n_rows; i++)  { 
-     if(type[i] == argv[4] ){typeB(i) =1;}
+     if(type[i] == argv[4] ){typeC(i) =1;}
    }
   mat coord_a = zeros<mat>(sum(typeA) + 1,3);
   mat coord_b = zeros<mat>(sum(typeB) + 1,3);
