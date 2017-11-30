@@ -6,7 +6,7 @@ read -e -p "Select a .Hscan or .etaxH File. You need to do a hydrogen scan first
 
 read -e -p "select soap threashold [d < 0.1]" d0
 
-read -e -p " Number of Hydrogen Atoms [n = 2]" nAtoms
+read -e -p " Number of Hydrogen Atoms [2,3]" nAtoms
 
 echo "$nAtoms"
 
