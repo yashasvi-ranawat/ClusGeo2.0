@@ -9,44 +9,53 @@ echo "How may I serve you today?\n\n\
     5 Get Soap Matrix on the Cluster Surface.\n\
     6 Get Soap Matrix on the Whole Cluster.\n\
     7 Get Soap Matrix of a Hydrogen Scan. Must do (1,2,4 or 4) before.\n\
-    8 Get Unique Surface Atoms. Must do (2) before .\n\
-    9 Get Unique Surface Hydrogens. Must do (4) before.\n\
-    10 Set Hydrogen Atoms on Unique Surface Atom. Must do (5) before.\n\n"
+    8 Get Unique Surface Atoms. Must do (5) before .\n\
+    9 Get Unique Surface Hydrogens. Must do (7) before.\n\
+    10 Set Hydrogen Atoms on Unique Surface Atom. Must do (5) before.\n
+    --------------------Hydrogen Coverage--------------------------------
+    11 Get SOAP Matrix for Hydrogens. Must do (1 - 4) before.\n
+    12 Get Unique Coverage. Must do (11). Only with 2 hydrogens are implemented"
 
 read -p  ":  " a
 q=1
 
   if [ $a -eq 1 ]; then
-    ./scanHydrogen.sh
+    Bash/scanHydrogen.sh
   fi
   if [ $a -eq 2 ]; then
-    ./getEta1.sh
+    Bash/getEta1.sh
   fi
   if [ $a -eq 3 ]; then
-    ./getEta2.sh
+    Bash/getEta2.sh
   fi
   if [ $a -eq 4 ]; then
-    ./getEta3.sh
+    Bash/getEta3.sh
   fi
 
   if [ $a -eq 5 ]; then
-    ./surface.sh 
+    Bash/surface.sh 
   fi
 
   if [ $a -eq 6 ]; then
-    ./allAt.sh 
+    Bash/allAt.sh 
   fi
   if [ $a -eq 7 ]; then
-    ./soapHydrogen.sh 
+    Bash/soapHydrogen.sh 
   fi
   if [ $a -eq 8 ]; then
-    ./elimSurface.sh 
+    Bash/elimSurface.sh 
   fi
   if [ $a -eq 9 ]; then
-    ./elimHydrogen.sh 
+    Bash/elimHydrogen.sh 
   fi
   if [ $a -eq 10 ]; then
-    ./putHydrogen.sh
+    Bash/putHydrogen.sh
+  fi
+  if [ $a -eq 11 ]; then
+    Bash/hydrogenCoverageSOAP.sh
+  fi
+  if [ $a -eq 12 ]; then
+    Bash/hydrogenCoverage.sh
   fi
 
 
