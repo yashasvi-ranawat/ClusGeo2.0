@@ -17,5 +17,4 @@ all:
 	g++ src/getEta3One.cpp -O3 -larmadillo -o Eta3One 
 	g++ -O3 src/soapNNsurfaceTriple.cpp -larmadillo -o surfaceThree
 	g++ -O3 src/soapNNHydrogenTriple.cpp -larmadillo -o HsoapThree
-	g++ -O3 src/getHydrogenCoverage.cpp -larmadillo -o HydrogenCoverage2
-	g++ -O3 src/getHydrogenCoverage3.cpp -larmadillo -o HydrogenCoverage3
+	g++ -O3 src/getHydrogenCoverageN.cpp -larmadillo -o HydrogenCoverageN

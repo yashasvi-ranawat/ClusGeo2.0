@@ -55,7 +55,7 @@ q=1
     Bash/hydrogenCoverageSOAP.sh
   fi
   if [ $a -eq 12 ]; then
-    Bash/hydrogenCoverage.sh
+    Bash/hydrogenCoverageN.sh
   fi
 
 

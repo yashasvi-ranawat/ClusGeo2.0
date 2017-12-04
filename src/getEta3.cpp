@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
   double dist1 = atof(argv[4]);
   double dist2 = atof(argv[5]);
 
-  double maxDistApart = 3.3;
+  double maxDistApart = 3.9;
 
 
   double epsilon=0.01;
@@ -96,7 +96,7 @@ int main(int argc, char** argv) {
         bufval2 = sqrt((buffvec1- buffvec3)*(buffvec1 - buffvec3).t());
         bufval3 = sqrt((buffvec2- buffvec3)*(buffvec2 - buffvec3).t());
 
-        if(bufval1(0) < maxDistApart && bufval2(0) <maxDistApart && bufval3(0) < 3){
+        if(bufval1(0) < maxDistApart && bufval2(0) <maxDistApart && bufval3(0) < maxDistApart){
           for(int t=0; t < The.n_elem; t++)  { 
             for(int p=0; p < Phi.n_elem; p++)  { 
 

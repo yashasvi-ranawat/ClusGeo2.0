@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
   double pi = 3.14159265358979324;
   double halfPi = 3.14159265358979324*0.5;
 
-  double neiDist = 3.3;
+  double neiDist = 3.9;
 
 // Getting R, Theta and Phi rescaled for the Gaull-Legendre quadrature
   vec R = linspace<vec>(1.1 ,2.1,30);
