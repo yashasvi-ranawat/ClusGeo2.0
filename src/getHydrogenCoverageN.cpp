@@ -10,7 +10,7 @@ using namespace std;
 using namespace arma;
 
 int main(int argc, char** argv) {
-  int selectSize = 2000000;
+  int selectSize = 100000;
   mat hydrogenSOAP;
   mat hydrogenPos;
 
@@ -52,26 +52,29 @@ int main(int argc, char** argv) {
 //  randNumVec.print("");
 // cout << "AAA" << endl;
 
-  mat combinedH1(selectSize, Nhyd*hydrogenSOAP.n_cols);
+//  mat combinedAverage(selectSize, Nhyd*hydrogenSOAP.n_cols);
+  mat combinedAverage = zeros<mat>(selectSize, hydrogenSOAP.n_cols);
   
 //getting upper tensor size
   for(int k = 0; k < selectSize; k++){
     for(int n = 0; n < Nhyd; n++){
         randInt = randNumVec(k,n);
         hydConfigs(k,n) = randInt;
-        buffSOAP = hydrogenSOAP.row(randInt);
-      for(int x = 0; x < hydrogenSOAP.n_cols; x++){
+//        buffSOAP = hydrogenSOAP.row(randInt);
+        combinedAverage.row(k) = combinedAverage.row(k) + hydrogenSOAP.row(randInt);
+//      for(int x = 0; x < hydrogenSOAP.n_cols; x++){
         
-        combinedH1(k,n*Nhyd + x) = buffSOAP(x);
+//        combinedAverage(k,n*Nhyd + x) = buffSOAP(x);
 //        k++;
-      }
+//      }
     }
   }
 
+        combinedAverage = combinedAverage/Nhyd;
 // cout << "AAB" << endl;
 
-  vec stillExists = ones<vec>(combinedH1.n_rows);
-  vec soapDiffs(combinedH1.n_rows);
+  vec stillExists = ones<vec>(combinedAverage.n_rows);
+  vec soapDiffs(combinedAverage.n_rows);
 
 //  k = 0;
 
@@ -91,9 +94,9 @@ int main(int argc, char** argv) {
 // cout << "AAC" << endl;
           cout << endl;
 
-          for(int i=0; i < combinedH1.n_rows ; i++){
+          for(int i=0; i < combinedAverage.n_rows ; i++){
 
-            buffRow = combinedH1.row(k) - combinedH1.row(i);
+            buffRow = combinedAverage.row(k) - combinedAverage.row(i);
             buffVal = sqrt(buffRow*buffRow.t())/hydrogenSOAP.n_cols;
             soapDiffs(i) = buffVal(0);
 

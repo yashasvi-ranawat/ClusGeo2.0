@@ -14,8 +14,8 @@ cat $FILE > bufferFile_DoNotTouch.xyz
 
  sed 's/^\s*[0-9].*$/H &/' $FILE2 >> bufferFile_DoNotTouch 
 
-    ./HydrogenCoverageN $FILE $FILE2 $d0 $nAtoms > "${FILE}"_"${FILE2}"_"${d}"_"${nAtoms}".Hcov
+    ./HydrogenCoverageN $FILE $FILE2 $d0 $nAtoms > "${FILE}"_"${FILE2}"_"${d0}"_"${nAtoms}".Hcov
 
-    echo "${FILE}_${FILE2}"_"${d}"_"${nAtoms}".Hcov \nwas produced!
+    echo "${FILE}_${FILE2}"_"${d0}"_"${nAtoms}".Hcov \nwas produced!
 
 

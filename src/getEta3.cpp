@@ -24,8 +24,8 @@ int main(int argc, char** argv) {
   double maxDistApart = 3.9;
 
 
-  double epsilon=0.01;
-  double neighEpsi=0.01;
+  double epsilon=0.015;
+  double neighEpsi=0.015;
   double potDiff = 0.00;
   double bubble = atof(argv[6]);
 
