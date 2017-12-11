@@ -1,30 +1,42 @@
-# 1 Introduction
+## Project
 
-ClusGeo2.0 is a software designed for avoiding redundant DFT calculations for adsorption sites on a nano-cluster and
-produce soap kernel for possible machine learning applications. The software can do the following.
-1. Set up many hydrogens on the cluster surface between a minimum distance from the surface atoms to a maximum distance.
-2. get soap spectrum on each surface atom.
-3. get soap spectrum on every atom in the cluster.
-4. get soap spectrum on every hydrogen after 1).
-5. find unique surface atoms after 2)
-6. find unique hydrogen sites after 4) 
-7. set one hydrogen on top of each unique surface atom for further geometrical optimization of the hydrogen position.
+The aim is to reduce heavy quantum mechanical calculations of adsorption studies in surface physics. Chemical descriptor called Smooth Overlap of Atomic Positions (SOAP) is used to find the fingerprint of each chemical environment of for the atoms, and atoms that have similar fingerprints that can be eliminated. By finding all the unique systems, we can avoid redundant quantum mechanical calculations.
 
-# 2 Installation
+## Code Example
 
-First you need to install Armadillo and Zenity. Armadillo can be found
-[here](http://arma.sourceforge.net/download.html). If you have linux, you likely have zenity preinstalled, but if you have Mac, use brew install zenity. Once you have installed Armadillo and zenity, you can compile the code by make.
+Once installed, you can run ./runme, and 
 
-# 3 Execution
 
-You can run the code by simply typing ./runme. Every run will require a cluster with a .xyz file. Try out the default values first to see if it is running correctly, then try out different parameters to see which parameters work best for your system. You can try an example by using the au40cu40.xyz or mos2.xyz to see how the software works.
+## Motivation
+Platinum Group Metals (PGMs) play an important role as catalytic materials
+that can withstand high acidity, which is important in industry. They
+are used for example in fuel cells and car filters.
+Nevertheless,  recycling remains limited, while PGMs are increasingly adopted in emerging
+new green energy technology, and studies indicate that presently known platinum reserves may last for only
+15 years.
 
-# 4 Running non-gui
+In order to substitute the expensive PGMs with inexpensive earth-abundant materials, we must rationally design
+catalysts. However, due to the immense atom configuration space, it is too expensive to compute enough configurations
+with current quantum mechanical computation methods and technology. This tool was developed to drastically decrease the
+heavy quantum mechanical calculations by reducing redundant computations of adsorption sites.
 
-In runme you will find .sh files. These .sh files will contain how the execution is set up. For example in
-defaultSurface.sh, you will find the command ./surfaceOne $FILE 0.5 5 3 9 $grid 2.8. The first argument, $FILE, is the
-input file. 0.5 is the "bohr radius", which should be set about 1/10 of the radius cutoff. 5 is the radius cutoff. 3 is
-the number of radial basis functions, which should be set to 3 for good accuracy. 9 is the size of the angular basis
-function, this should also be set to 9. $grid is the grid density, 1 is usually sufficient but higher will give better
-accuracy but will take much longer. Finally, 2.8 is the radius of a sphere that should be able to roll around the
- cluster surface, but should not fit anywhere inside the cluster. This defines the surface atoms.
+## Installation
+
+The code was written in C++ with Armadillo (http://arma.sourceforge.net/download.html) with version higher than 7. Once Armadillo 
+is installed, ClusGeo2.0 in installed by simply running 'make' in the terminal. After ClusGeo2.0 is installed, it can be run by running './runme'.
+
+## Tests
+
+
+## Contributors
+The description of the project, which is a EU funded project called critcat can be found here:
+
+http://cordis.europa.eu/project/rcn/200818_en.html
+
+and the description of our group can be found here:
+
+http://physics.aalto.fi/en/groups/sin/
+
+We also work closely with Nanolayers:
+
+http://nanolayers.com/
