@@ -2,19 +2,22 @@
 
 
 echo "How may I serve you today?\n\n\
+    ------------------------Get H--------------------------------------\n\n\
     1 Scan Surface Hydrogen.\n\
     2 Get Eta1 Hs.\n\
     3 Get Eta2 Hs.\n\
-    4 Get Eta3 Hs.\n\
+    4 Get Eta3 Hs.\n\n\
+    ------------------------Get SOAP-----------------------------------\n\n\
     5 Get Soap Matrix on the Cluster Surface.\n\
     6 Get Soap Matrix on the Whole Cluster.\n\
-    7 Get Soap Matrix of a Hydrogen Scan. Must do (1,2,4 or 4) before.\n\
+    7 Get Soap Matrix of a Hydrogen Scan. Must do (1,2,4 or 4) before.\n\n\
+    ------------------------Filter H------------------------------------\n\n\
     8 Get Unique Surface Atoms. Must do (5) before .\n\
     9 Get Unique Surface Hydrogens. Must do (7) before.\n\
-    10 Set Hydrogen Atoms on Unique Surface Atom. Must do (5) before.\n
-    --------------------Hydrogen Coverage--------------------------------\n
-    11 Get SOAP Matrix for Hydrogens. Must do (1 - 4) before.\n
-    12 Get Unique Coverage. Must do (11). \n"
+    10 Set Hydrogen Atoms on Unique Surface Atom. Must do (5) before.\n\n\
+    --------------------Hydrogen Coverage--------------------------------\n\n\
+    11 [NEW!]Get SOAP Matrix for Hydrogens. Must do (1 - 4) before.\n\
+    12 [NEW!] Get Unique Coverage. Must do (11). \n"
 
 read -p  ":  " a
 q=1
