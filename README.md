@@ -4,7 +4,7 @@ The aim is to reduce heavy quantum mechanical calculations of adsorption studies
 
 ## Code Example
 
-Once installed, you can run ./runme, and 
+Once installed, you can run ./runme. Armed with a folder containing only the .xyz file, we can first select between numer 1 - 4, to place hydrogens on the surfaces. Second, we run ./runme again, and select between 5 - 7 to get the soap spectra. Once the SOAP matrices are created, you can ./runme again, and filter out the redundant surface hydrogen atoms.
 
 
 ## Motivation
@@ -26,6 +26,17 @@ The code was written in C++ with Armadillo (http://arma.sourceforge.net/download
 is installed, ClusGeo2.0 in installed by simply running 'make' in the terminal. After ClusGeo2.0 is installed, it can be run by running './runme'.
 
 ## Tests
+You can test the performace by running ./runme and choose number 2. By following the input below. 
+
+Select a .xyz File: au40cu40.xyz
+Select distance from atom type1: 1.9
+Select distance from atom type2(ignore if only one atom): 1.8
+Pic a buble size . \n This will determine the surface.  make sure to check if the surface was defined correctly
+afterwards. \n If too large, it might ignore valleys, if too small, it will create a bubble inside and think that there
+is a surface there.[2.0 - ]: 2.5
+Select Atom Types.e.x. type "Au Cu" but without the quotations: Au Cu
+
+you will find a new file called 'au40cu40.xyz.eta1H'. This contains all 57 points of the xyz positions of the top hydrogen sites of the cluster.
 
 
 ## Contributors
