@@ -22,8 +22,8 @@ int main(int argc, char** argv) {
   vec Phi =linspace<vec>(0,2*pi,360);
   double dist1 = atof(argv[4]);
   double dist2 = atof(argv[5]);
-  double epsilon=0.015;
-  double neighEpsi=0.015;
+  double epsilon=0.030;
+  double neighEpsi=0.030;
   double potDiff = 0.00;
   double bubble = atof(argv[6]);
 

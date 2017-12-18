@@ -16,16 +16,16 @@ int main(int argc, char** argv) {
 
 // Getting R, Theta and Phi rescaled for the Gaull-Legendre quadrature
   vec R = linspace<vec>(1.1 ,2.1,30);
-  vec The =linspace<vec>(0,pi,600);
-  vec Phi =linspace<vec>(0,2*pi,1000);
+  vec The =linspace<vec>(0,pi,300);
+  vec Phi =linspace<vec>(0,2*pi,500);
   double dist1 = atof(argv[4]);
   double dist2 = atof(argv[5]);
 
   double maxDistApart = 3.9;
 
 
-  double epsilon=0.015;
-  double neighEpsi=0.015;
+  double epsilon=0.03;
+  double neighEpsi=0.03;
   double potDiff = 0.00;
   double bubble = atof(argv[6]);
 

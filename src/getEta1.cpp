@@ -16,8 +16,8 @@ int main(int argc, char** argv) {
 
 // Getting R, Theta and Phi rescaled for the Gaull-Legendre quadrature
   vec R = linspace<vec>(1.1 ,2.1,30);
-  vec The =linspace<vec>(0,pi,180);
-  vec Phi =linspace<vec>(0,2*pi,360);
+  vec The =linspace<vec>(0,pi,90);
+  vec Phi =linspace<vec>(0,2*pi,180);
   double dist1 = atof(argv[4]);
   double dist2 = atof(argv[5]);
   double epsilon=0.01;
