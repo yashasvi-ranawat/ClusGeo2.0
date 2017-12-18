@@ -13,7 +13,8 @@ echo "How may I serve you today?\n\n\
     7 Get Soap Matrix of a Hydrogen Scan. Must do (1,2,4 or 4) before.\n\n\
     ------------------------Filter H------------------------------------\n\n\
     8 Get Unique Surface Atoms. Must do (5) before .\n\
-    9 Get Unique Surface Hydrogens. Must do (7) before.\n\
+    9 Get Unique Surface Hydrogens. Must do (7) before.\n\n\
+    ------------------------Add H on Surface Atom-----------------------\n\n\
     10 Set Hydrogen Atoms on Unique Surface Atom. Must do (5) before.\n\n\
     --------------------Hydrogen Coverage--------------------------------\n\n\
     11 [NEW!]Get SOAP Matrix for Hydrogens. Must do (1 - 4) before.\n\
@@ -59,6 +60,9 @@ q=1
   fi
   if [ $a -eq 12 ]; then
     Bash/hydrogenCoverageN.sh
+  fi
+  if [ $a -eq 13 ]; then
+     Bash/trustme.sh
   fi
 
 
