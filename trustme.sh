@@ -10,17 +10,17 @@ echo $thrsh
 ###read -e -p "Select an xyz File: " FILE
 
 #######################################################################################
-##time ./scanH $FILE 50 2.0 2.5 1.3 2.3 > "$FILE"_300_05_25_13_23.Hscan 
-##time ./Eta2 $FILE Au Cu 1.9 1.8 2.5  > "$FILE".eta2H 
-##time ./Eta3 $FILE Au Cu 1.9 1.8 2.5  > "$FILE".eta3H 
+time ./scanH $FILE 300 0.5 2.5 1.3 2.3 > "$FILE"_300_05_25_13_23.Hscan 
+time ./Eta2 $FILE Au Cu 1.9 1.8 2.5  > "$FILE".eta2H 
+time ./Eta3 $FILE Au Cu 1.9 1.8 2.5  > "$FILE".eta3H 
 #######################################################################################
-##time ./Hsoap $FILE Au Cu "$FILE"_300_05_25_13_23.Hscan 0.5 5.0 3 9 1 > "$FILE"_300_05_25_13_23.Hscan_twoAt_05_50_3_9_1.Hsoap
-##time ./Hsoap $FILE Au Cu "$FILE".eta2H 0.5 5.0 3 9 1 > "$FILE".eta2H_twoAt_05_50_3_9_1.Hsoap
-##time ./Hsoap $FILE Au Cu "$FILE".eta3H 0.5 5.0 3 9 1 > "$FILE".eta3H_twoAt_05_50_3_9_1.Hsoap
+time ./Hsoap $FILE Au Cu "$FILE"_300_05_25_13_23.Hscan 0.5 5.0 3 9 1 > "$FILE"_300_05_25_13_23.Hscan_twoAt_05_50_3_9_1.Hsoap
+time ./Hsoap $FILE Au Cu "$FILE".eta2H 0.5 5.0 3 9 1 > "$FILE".eta2H_twoAt_05_50_3_9_1.Hsoap
+time ./Hsoap $FILE Au Cu "$FILE".eta3H 0.5 5.0 3 9 1 > "$FILE".eta3H_twoAt_05_50_3_9_1.Hsoap
 #######################################################################################
-##time ./elimH "$FILE"_300_05_25_13_23.Hscan_twoAt_05_50_3_9_1.Hsoap "$thrsh"  > "$FILE"_300_05_25_13_23.Hscan_twoAt_05_50_3_9_1.Hsoap_"$thrsh".ScanHuniq
-##time  ./elimH "$FILE".eta2H_twoAt_05_50_3_9_1.Hsoap $thrsh  > "$FILE".eta2H_twoAt_05_50_3_9_1.Hsoap_${thrsh}.Eta2Huniq
-##time  ./elimH "$FILE".eta3H_twoAt_05_50_3_9_1.Hsoap $thrsh  > "$FILE".eta3H_twoAt_05_50_3_9_1.Hsoap_${thrsh}.Eta3Huniq
+time ./elimH "$FILE"_300_05_25_13_23.Hscan_twoAt_05_50_3_9_1.Hsoap "$thrsh"  > "$FILE"_300_05_25_13_23.Hscan_twoAt_05_50_3_9_1.Hsoap_"$thrsh".ScanHuniq
+time  ./elimH "$FILE".eta2H_twoAt_05_50_3_9_1.Hsoap $thrsh  > "$FILE".eta2H_twoAt_05_50_3_9_1.Hsoap_${thrsh}.Eta2Huniq
+time  ./elimH "$FILE".eta3H_twoAt_05_50_3_9_1.Hsoap $thrsh  > "$FILE".eta3H_twoAt_05_50_3_9_1.Hsoap_${thrsh}.Eta3Huniq
 #######################################################################################
 Bash/getXYZ.sh "$FILE"_300_05_25_13_23.Hscan_twoAt_05_50_3_9_1.Hsoap_"$thrsh".ScanHuniq "$FILE"_300_05_25_13_23.Hscan > "$FILE"_scan_Uniq.xyz
 Bash/getXYZ.sh "$FILE".eta2H_twoAt_05_50_3_9_1.Hsoap_${thrsh}.Eta2Huniq "$FILE".eta2H > "$FILE"_eta2_Uniq.xyz
