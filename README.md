@@ -31,8 +31,10 @@ You can test the performace by running ./runme and choose number 2. By following
 Select a .xyz File: au40cu40.xyz
 Select distance from atom type1: 1.9
 Select distance from atom type2(ignore if only one atom): 1.8
-Pic a buble size . \n This will determine the surface.  make sure to check if the surface was defined correctly
-afterwards. \n If too large, it might ignore valleys, if too small, it will create a bubble inside and think that there
+Pic a buble size .
+This will determine the surface.  make sure to check if the surface was defined correctly
+afterwards.
+If too large, it might ignore valleys, if too small, it will create a bubble inside and think that there
 is a surface there.[2.0 - ]: 2.5
 Select Atom Types.e.x. type "Au Cu" but without the quotations: Au Cu
 
