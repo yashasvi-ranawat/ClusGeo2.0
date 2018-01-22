@@ -48,19 +48,19 @@ int main(int argc, char** argv) {
   cube Y;
   cube Z;
   cube GLC(GL.n_rows,GL.n_rows,GL.n_rows); // GL weights in 3D which is just an outer product of GL;
-//  if(rcut <= 1.5){GL.load("LegendreWeights/parameters20.txt");GLC.load("BI/GLC20.bi");} //
-//  else if (rcut >1.5 && rcut <= 2.5 ){GL.load("LegendreWeights/parameters30.txt");GLC.load("BI/GLC30.bi");} //
-//  else if (rcut >2.5 && rcut <= 3.5 ){GL.load("LegendreWeights/parameters40.txt");GLC.load("BI/GLC40.bi");} //
-//  else if (rcut >3.5 && rcut <= 4.5 ){GL.load("LegendreWeights/parameters50.txt");GLC.load("BI/GLC50.bi");} //
-//  else if (rcut >4.5 && rcut <= 5.5 ){GL.load("LegendreWeights/parameters60.txt");  GLC.load("BI/GLC60.bi");}//
-//  else if (rcut >5.5 && rcut <= 6.5 ){GL.load("LegendreWeights/parameters70.txt");  GLC.load("BI/GLC70.bi");}//
-//  else if (rcut >6.5 && rcut <= 7.5 ){GL.load("LegendreWeights/parameters80.txt");GLC.load("BI/GLC80.bi");} //
-//  else if (rcut >7.5 && rcut <= 8.5 ){GL.load("LegendreWeights/parameters90.txt");GLC.load("BI/GLC90.bi");} //
-//  else if (rcut >8.5 && rcut <= 9.5 ){ GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");} //
-//  else if (rcut >9.5 && rcut <= 10.5 ){GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");}//
-//  else    {cout << "Error::rcut too large..\n Exiting.." << cout; exit(0);}
+//  if(rcut <= 1.5){GL.load("LegendreWeights/parameters20.txt");GLC.load("BI/GLC20.bi");}
+//  else if (rcut >1.5 && rcut <= 2.5 ){GL.load("LegendreWeights/parameters30.txt");GLC.load("BI/GLC30.bi");} 
+//  else if (rcut >2.5 && rcut <= 3.5 ){GL.load("LegendreWeights/parameters40.txt");GLC.load("BI/GLC40.bi");} 
+//  else if (rcut >3.5 && rcut <= 4.5 ){GL.load("LegendreWeights/parameters50.txt");GLC.load("BI/GLC50.bi");} 
+//  else if (rcut >4.5 && rcut <= 5.5 ){GL.load("LegendreWeights/parameters60.txt");  GLC.load("BI/GLC60.bi");}
+//  else if (rcut >5.5 && rcut <= 6.5 ){GL.load("LegendreWeights/parameters70.txt");  GLC.load("BI/GLC70.bi");}
+//  else if (rcut >6.5 && rcut <= 7.5 ){GL.load("LegendreWeights/parameters80.txt");GLC.load("BI/GLC80.bi");} 
+//  else if (rcut >7.5 && rcut <= 8.5 ){GL.load("LegendreWeights/parameters90.txt");GLC.load("BI/GLC90.bi");} 
+//  else if (rcut >8.5 && rcut <= 9.5 ){ GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");} 
+//  else if (rcut >9.5 && rcut <= 10.5 ){GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");}
+//  else    {cout << "Error::rcut too large..\n Exiting.."; exit(0);}
 
-//  GL.load("parameters100.txt");GLC.load("GLC100.bi");//
+//  GL.load("parameters100.txt");GLC.load("GLC100.bi");
 
   if(grid == 0 ){GL.load("LegendreWeights/parameters20.txt");GLC.load("BI/GLC20.bi");} //
   else if (grid == 1){GL.load("LegendreWeights/parameters30.txt");GLC.load("BI/GLC30.bi");} //
@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
   else if (grid == 6){GL.load("LegendreWeights/parameters80.txt");GLC.load("BI/GLC80.bi");} //
   else if (grid == 7){GL.load("LegendreWeights/parameters90.txt");GLC.load("BI/GLC90.bi");} //
   else if (grid == 8){ GL.load("LegendreWeights/parameters100.txt");GLC.load("BI/GLC100.bi");} //
-  else    {cout << "Error::grid too large..\n Exiting.." << cout; exit(0);}
+  else    {cout << "Error::grid too large..\n Exiting.."; exit(0);}
 
 // Getting R, Theta and Phi rescaled for the Gaull-Legendre quadrature
   vec R = rcut*0.5*GL.col(0) + rcut*0.5 ;
@@ -92,7 +92,7 @@ int main(int argc, char** argv) {
   //coord = posAve(coord); 
   //mat coordReload = coord;
 //cout << "CAA" << endl;  
-  cube C = 100*ones<mat>(radialN,100); // (n, all the coeffs) -- exactly 100 for l = 9
+  mat C = 100*ones<mat>(radialN,100); // (n, all the coeffs) -- exactly 100 for l = 9
   //cube intMea;
   //cube intMeb;
   cube intAll; // charge density values with GL weights
@@ -133,7 +133,7 @@ int main(int argc, char** argv) {
   cube Y8 = getY(8,The, Phi);
   cube Y9 = getY(9,The, Phi);
 
-  double Cbuff; // buffer for C
+  //double Cbuff; // buffer for C
 
 //Finding where atom A and atom B are in .xyz.
   //for(int i=0; i < coord.n_rows; i++)  { 
@@ -181,13 +181,13 @@ for(int bigI = 0; bigI < hydrogenPos.n_rows; bigI++){
       //rhoAll = getGaussDistr(coordH,R, The, Phi, X, Y, Z, sig);
 
       //----------------------------------------------------------------------------------------------------------------
-      // Part 3) get coefs c_anlm by Integration ->  where C(a,n,I) where a is the type, n is the radial basis function
+      // Part 3) get coefs c_anlm by Integration ->  where C(n,I) where a is the type, n is the radial basis function
       //         and I is (l,m) sequenially. intMa and intMb multiplied with getT are integrands.
       //----------------------------------------------------------------------------------------------------------------
 
       //intMea = rho_a%GLC;
       //intMeb = rho_b%GLC;
-      rhoAll = getGChgDistr(hydrogenPos.row(bigI),chgType,chgVal,R, The, Phi, X, Y, Z, sig);
+      rhoAll = getChgDistr(hydrogenPos.row(bigI),chgType,chgVal,R, The, Phi, X, Y, Z, sig);
       intAll = rhoAll%GLC;
       globalI = 0;
 
@@ -218,7 +218,8 @@ for(int bigI = 0; bigI < hydrogenPos.n_rows; bigI++){
       //----------------------------------------------------------------------------------------------------------------
       
       incrementN = 0; 
-
+      ofstream file1;
+      file1.open(argv[8]);
       for(int n1=0; n1 < radialN; n1++){  
         for(int n2=0; n2 < radialN; n2++){ 
     
@@ -231,11 +232,11 @@ for(int bigI = 0; bigI < hydrogenPos.n_rows; bigI++){
               incrementN++;
             }
 //              cout << a  << " " <<n1 << " "  << n2 << " " << l << " " << P[a][n1][n2][l] << endl;
-                cout << sumMe << " ";
+                file1 << sumMe << " "<<endl;
           }
         }
       }
-      cout << endl;
+      //cout << endl;
       //cout << bigI << endl;
 }
 return 0;

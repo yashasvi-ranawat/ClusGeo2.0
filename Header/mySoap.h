@@ -102,7 +102,33 @@ if(coord.n_rows > 0){
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------------
-cube getChgDistr(rowvec origin,chgType,chgVal,vec R, vec The, vec Phi, cube X, cube Y , cube Z, double sig){
+vec solveMinvB(mat m, vec x){
+    vec A = zeros<vec>(3);
+    // computes the inverse of a matrix m
+    double det = m(0, 0) * (m(1, 1) * m(2, 2) - m(2, 1) * m(1, 2)) -
+                 m(0, 1) * (m(1, 0) * m(2, 2) - m(1, 2) * m(2, 0)) +
+                 m(0, 2) * (m(1, 0) * m(2, 1) - m(1, 1) * m(2, 0));
+
+    double invdet = 1 / det;
+
+    mat minv = zeros<mat>(3,3); // inverse of matrix m
+    minv(0, 0) = (m(1, 1) * m(2, 2) - m(2, 1) * m(1, 2)) * invdet;
+    minv(0, 1) = (m(0, 2) * m(2, 1) - m(0, 1) * m(2, 2)) * invdet;
+    minv(0, 2) = (m(0, 1) * m(1, 2) - m(0, 2) * m(1, 1)) * invdet;
+    minv(1, 0) = (m(1, 2) * m(2, 0) - m(1, 0) * m(2, 2)) * invdet;
+    minv(1, 1) = (m(0, 0) * m(2, 2) - m(0, 2) * m(2, 0)) * invdet;
+    minv(1, 2) = (m(1, 0) * m(0, 2) - m(0, 0) * m(1, 2)) * invdet;
+    minv(2, 0) = (m(1, 0) * m(2, 1) - m(2, 0) * m(1, 1)) * invdet;
+    minv(2, 1) = (m(2, 0) * m(0, 1) - m(0, 0) * m(2, 1)) * invdet;
+    minv(2, 2) = (m(0, 0) * m(1, 1) - m(1, 0) * m(0, 1)) * invdet;
+    for (int i = 0; i < 3; i++){
+    A(i) = minv(i, 0)*x(0) + minv(i, 1)*x(1) + minv(i, 2)*x(2);
+    }
+    return A; // M_inv.x
+}
+//----------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------
+cube getChgDistr(rowvec origin,mat chgType, cube chgVal,vec R, vec The, vec Phi, cube X, cube Y , cube Z, double sig){
 //!!!! DOUNT FORGET IN MAIN TO DO:
 //  sig = 1/sig;
 //  sig = sig*sig;
@@ -126,6 +152,7 @@ cube getChgDistr(rowvec origin,chgType,chgVal,vec R, vec The, vec Phi, cube X, c
         x(0) = X.at(i,j,k) + origin(0) - chgType(0,1);
         x(1) = Y.at(i,j,k) + origin(1) - chgType(0,2);
         x(2) = Z.at(i,j,k) + origin(2) - chgType(0,3);
+        //c = solveMinvB(voxl, x); // fractional-index location of the point
         c = solve(voxl, x); // fractional-index location of the point
         for (ind1 = floor(c(0)); ind1 <= ceil(c(0)); ind1++)
           for (ind2 = floor(c(1)); ind2 <= ceil(c(1)); ind2++)
@@ -139,7 +166,6 @@ cube getChgDistr(rowvec origin,chgType,chgVal,vec R, vec The, vec Phi, cube X, c
 
  return G;
 }
-
 //----------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------------
 double integ3D(cube intMea,cube Tnlm){
