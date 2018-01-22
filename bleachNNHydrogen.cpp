@@ -107,7 +107,7 @@ int main(int argc, char** argv) {
   int globalI = 0;
   int incrementN = 0; 
   //double P[typesN][radialN][radialN][lMax]; // Power Spectrum P[A-type][n1][n2][l]
-  double P[radialN][radialN][lMax]; // Power Spectrum P[A-type][n1][n2][l]
+  //double P[radialN][radialN][lMax]; // Power Spectrum P[A-type][n1][n2][l]
 // New coordinates -> type A + Hydrogen and type B + Hydrogen
 
   gn.col(0)= hydrogenRDF(1, z,ao,norm,R); // a0 = 0.5, Norm. Const. = 2^(3/2)

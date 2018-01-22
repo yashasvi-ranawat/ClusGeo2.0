@@ -102,6 +102,46 @@ if(coord.n_rows > 0){
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------------
+cube getChgDistr(rowvec origin,chgType,chgVal,vec R, vec The, vec Phi, cube X, cube Y , cube Z, double sig){
+//!!!! DOUNT FORGET IN MAIN TO DO:
+//  sig = 1/sig;
+//  sig = sig*sig;
+//  sig = 0.5*sig;
+//  DONT FORGET TO RESCALE ORIGIN FOR GAUSS-LEGENDRE QUADUATURE!
+  
+  cube G = zeros<cube>(R.n_elem,The.n_elem,Phi.n_elem);
+  vec x = zeros<vec>(3); // X1 = R*sin(Theta)*cos(Phi), X2 = R*sin(Theta)*sin(Phi), X3 = R*cos(Theta)
+  vec c = zeros<vec>(3); //indices corresponding to x1,x2,x3 in chgVal
+  int i, j, k,ind1, ind2, ind3; //iterators
+  mat voxl; //voxel vectors
+  for(i=0; i < 3; i++)
+      for(j=0; j < 3; j++){
+      voxl(i,j) = chgType(1+i,1+j);
+  }
+
+  for(i=0; i < R.n_rows; i++)
+    for(j=0; j < The.n_rows; j++)
+      for(k=0; k < Phi.n_rows; k++){ 
+        // changing axis to our charge file axis
+        x(0) = X.at(i,j,k) + origin(0) - chgType(0,1);
+        x(1) = Y.at(i,j,k) + origin(1) - chgType(0,2);
+        x(2) = Z.at(i,j,k) + origin(2) - chgType(0,3);
+        c = solve(voxl, x); // fractional-index location of the point
+        for (ind1 = floor(c(0)); ind1 <= ceil(c(0)); ind1++)
+          for (ind2 = floor(c(1)); ind2 <= ceil(c(1)); ind2++)
+            for (ind3 = floor(c(2)); ind3 <= ceil(c(2)); ind3++){
+              G.at(i,j,k) = G.at(i,j,k) + chgVal.at(ind1,ind2,ind3)/8.0;
+        }
+//          G(i,j,k) = G(i,j,k) + exp(-abs((coord(p,0) - x1)) - abs((coord(p,1) - x2)) - abs((coord(p,2) - x3)));
+        //G.at(i,j,k) = G.at(i,j,k) + exp(-pow(((coord(p,0) - x1)),2) - pow((coord(p,1) - x2),2) - pow((coord(p,2) - x3),2));
+        
+  }
+
+ return G;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------
 double integ3D(cube intMea,cube Tnlm){
 
   // DANGER!!! NOT RESCALED -> MUST BE RESCALED BY 0.5*0.5*0.5*pi*pi*rcut*integ3D() in main.
