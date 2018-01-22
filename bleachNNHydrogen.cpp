@@ -232,7 +232,7 @@ for(int bigI = 0; bigI < hydrogenPos.n_rows; bigI++){
               incrementN++;
             }
 //              cout << a  << " " <<n1 << " "  << n2 << " " << l << " " << P[a][n1][n2][l] << endl;
-                file1 << sumMe << " "<<endl;
+                file1 << sumMe <<endl;
           }
         }
       }

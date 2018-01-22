@@ -139,7 +139,7 @@ cube getChgDistr(rowvec origin,mat chgType, cube chgVal,vec R, vec The, vec Phi,
   vec x = zeros<vec>(3); // X1 = R*sin(Theta)*cos(Phi), X2 = R*sin(Theta)*sin(Phi), X3 = R*cos(Theta)
   vec c = zeros<vec>(3); //indices corresponding to x1,x2,x3 in chgVal
   int i, j, k,ind1, ind2, ind3; //iterators
-  mat voxl; //voxel vectors
+  mat voxl = zeros<mat>(3,3); //voxel vectors
   for(i=0; i < 3; i++)
       for(j=0; j < 3; j++){
       voxl(i,j) = chgType(1+i,1+j);
