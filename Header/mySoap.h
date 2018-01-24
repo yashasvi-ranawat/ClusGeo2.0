@@ -142,7 +142,7 @@ cube getChgDistr(rowvec origin,mat chgType, cube chgVal,vec R, vec The, vec Phi,
   mat voxl = zeros<mat>(3,3); //voxel vectors
   for(i=0; i < 3; i++)
       for(j=0; j < 3; j++){
-      voxl(i,j) = chgType(1+i,1+j);
+      voxl(i,j) = chgType(1+i,1+j) * 0.5291772; //Converting to angstrom from bohr
   }
 
   for(i=0; i < R.n_rows; i++)
