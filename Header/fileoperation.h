@@ -121,10 +121,11 @@ return A;
 cube getChgVal(char* myFile, mat chgType){
 
   ifstream myfilein(myFile);
-  string line;
+  string line, hold;
   int totvoxl = chgType(1,0)*chgType(2,0)*chgType(3,0);
-  int numlines = floor(totvoxl/6.0)+1;
-  vec pos = zeros<vec>(6*numlines);
+  //int numlines = floor(totvoxl/6.0)+1;
+  //vec pos = zeros<vec>(6*numlines);
+  vec pos = zeros<vec>(totvoxl);
 
   cube A = zeros<cube>(int(chgType(1,0)),int(chgType(2,0)),int(chgType(3,0)));
   
@@ -134,9 +135,10 @@ cube getChgVal(char* myFile, mat chgType){
 
     while (getline(myfilein, line))
     {
-        if (j >4+int(chgType(0,0))) {
+        if (j >5+int(chgType(0,0))) {
         istringstream ss(line);
-        ss >> pos(6*k) >> pos(6*k+1) >> pos(6*k+2) >> pos(6*k+3) >> pos(6*k+4) >> pos(6*k+5);
+        while (ss >> hold){
+            pos(k)=stod(hold);
         k++;
      }
 
