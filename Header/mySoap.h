@@ -140,6 +140,8 @@ cube getChgDistr(rowvec origin,mat chgType, cube chgVal,vec R, vec The, vec Phi,
   vec c = zeros<vec>(3); //indices corresponding to x1,x2,x3 in chgVal
   int i, j, k,ind1, ind2, ind3; //iterators
   mat voxl = zeros<mat>(3,3); //voxel vectors
+  double hold;
+  
   for(i=0; i < 3; i++)
       for(j=0; j < 3; j++){
       voxl(i,j) = chgType(1+i,1+j);
@@ -157,6 +159,10 @@ cube getChgDistr(rowvec origin,mat chgType, cube chgVal,vec R, vec The, vec Phi,
         for (ind1 = floor(c(0)); ind1 <= ceil(c(0)); ind1++)
           for (ind2 = floor(c(1)); ind2 <= ceil(c(1)); ind2++)
             for (ind3 = floor(c(2)); ind3 <= ceil(c(2)); ind3++){
+              hold = 0;
+              if (ind1 >= 0 && ind1 < chgType(1,0) && ind2 < chgType(2,0) && ind2 >= 0 && ind3 >= 0 && ind3 < chgType(3,0)){
+                  hold = chgVal.at(ind1,ind2,ind3);
+              }
               G.at(i,j,k) = G.at(i,j,k) + chgVal.at(ind1,ind2,ind3)/8.0;
         }
 //          G(i,j,k) = G(i,j,k) + exp(-abs((coord(p,0) - x1)) - abs((coord(p,1) - x2)) - abs((coord(p,2) - x3)));
