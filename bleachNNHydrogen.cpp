@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
   mat chgType; // type properties of cube file; size=4,4; line 3-6 in cube file. 
   chgType = getChgType(argv[1]);
   cube chgVal; // charge values
-  chgVal = getChgVal(argv[1],chgType);
+  //chgVal = getChgVal(argv[1],chgType);
   mat hydrogenPos;
   hydrogenPos.load(argv[2]); // [0.1 - 5.0] EXP. BEST = 0.5 5 3 5
   double ao = atof(argv[3]); // [0.1 - 5.0] EXP. BEST = 0.5 5 3 5
@@ -188,7 +188,10 @@ for(int bigI = 0; bigI < hydrogenPos.n_rows; bigI++){
 
       //intMea = rho_a%GLC;
       //intMeb = rho_b%GLC;
-      rhoAll = getChgDistr(hydrogenPos.row(bigI),chgType,chgVal,R, The, Phi, X, Y, Z, sig);
+      //rhoAll = getChgDistr(hydrogenPos.row(bigI),chgType,chgVal,R, The, Phi, X, Y, Z, sig);
+      mat coord;
+      coord = getatoms(argv[1], chgType);
+      rhoAll = getGaussDistr2(hydrogenPos.row(bigI), coord, R, The, Phi, X, Y , Z, sig);
       intAll = rhoAll%GLC;
       globalI = 0;
 

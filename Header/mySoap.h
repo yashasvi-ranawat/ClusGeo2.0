@@ -102,6 +102,62 @@ if(coord.n_rows > 0){
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------------------------
+mat getatoms(char* myFile, mat chgType){
+  ifstream myfilein(myFile);
+  string line, hold1, hold2;
+  mat A = zeros<mat>(int(chgType(0,0)), 4);
+  int i=0;
+  int j=0;
+
+  while (getline(myfilein, line))
+  {
+    if (j>5){
+      istringstream ss(line);
+      ss >> A(j-6, 3) >> hold2 >> A(j-6, 0) >> A(j-6, 1) >> A(j-6, 2);
+    }
+    if (j == 5+int(chgType(0,0))){ break;}
+    j++;
+  }
+
+  return A * 0.5291772;
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------
+cube getGaussDistr2(rowvec origin, mat coord, vec R, vec The, vec Phi, cube X, cube Y , cube Z, double sig){
+//!!!! DOUNT FORGET IN MAIN TO DO:
+//  sig = 1/sig;
+//  sig = sig*sig;
+//  sig = 0.5*sig;
+//  DONT FORGET TO RESCALE ORIGIN FOR GAUSS-LEGENDRE QUADUATURE!
+  
+  cube G = zeros<cube>(R.n_elem,The.n_elem,Phi.n_elem);
+  double x1, x2, x3; // X1 = R*sin(Theta)*cos(Phi), X2 = R*sin(Theta)*sin(Phi), X3 = R*cos(Theta) 
+  rowvec originMod = zeros<rowvec>(4);
+  for(int i=0; i < 3; i++){
+    originMod(i) = origin(i);
+  }
+
+  for(int i=0; i < coord.n_rows; i++){
+  coord.row(i) = coord.row(i) - originMod; // shifting all xyz position so that H is on the origin. 
+  }
+if(coord.n_rows > 0){
+  for(int p=0; p < coord.n_rows ; p++)
+    for(int i=0; i < R.n_rows; i++)
+      for(int j=0; j < The.n_rows; j++)
+        for(int k=0; k < Phi.n_rows; k++){ 
+          x1 = X.at(i,j,k);
+          x2 = Y.at(i,j,k);
+          x3 = Z.at(i,j,k);
+//          G(i,j,k) = G(i,j,k) + exp(-abs((coord(p,0) - x1)) - abs((coord(p,1) - x2)) - abs((coord(p,2) - x3)));
+          G.at(i,j,k) = G.at(i,j,k) + (2.0*(coord(p,3)/0.5291772-16)/26.0 + (42-coord(p,3)/0.5291772)/26.0) * exp(-pow(((coord(p,0) - x1)),2) - pow((coord(p,1) - x2),2) - pow((coord(p,2) - x3),2));
+         }
+ }
+
+ return G;
+}
+//----------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------
 vec solveMinvB(mat m, vec x){
     vec A = zeros<vec>(3);
     // computes the inverse of a matrix m
