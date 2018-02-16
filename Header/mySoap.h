@@ -136,35 +136,95 @@ cube getChgDistr(rowvec origin,mat chgType, cube chgVal,vec R, vec The, vec Phi,
 //  DONT FORGET TO RESCALE ORIGIN FOR GAUSS-LEGENDRE QUADUATURE!
   
   cube G = zeros<cube>(R.n_elem,The.n_elem,Phi.n_elem);
+  //cube chgVoxl = zeros<cube>(2,2,2); // charge at corners of a voxl for Trilinear interpolation
+  cube chgVoxl = zeros<cube>(4,4,4); // charge at corners of a voxl for Tricubic interpolation
   vec x = zeros<vec>(3); // X1 = R*sin(Theta)*cos(Phi), X2 = R*sin(Theta)*sin(Phi), X3 = R*cos(Theta)
+  vec d = zeros<vec>(3); // Distance ratio from x0, y0, z0
   vec c = zeros<vec>(3); //indices corresponding to x1,x2,x3 in chgVal
-  int i, j, k,ind1, ind2, ind3; //iterators
+  vec c_fl; // floor values of c
+  int i, j, k,ind1, ind2, ind3, ii, jj; //iterators
   mat voxl = zeros<mat>(3,3); //voxel vectors
-  double hold;
-  
+//double c00, c01, c10, c11; // Trilinear interpolation
+  mat cx = zeros<mat>(4,4); // Tricubic interpolation
+  vec cy = zeros<mat>(4);// Tricubic interpolation
+  double correction = 2.5; //Charge value added to all points, to make spherical harmonic integrals large
+
   for(i=0; i < 3; i++)
       for(j=0; j < 3; j++){
-      voxl(i,j) = chgType(1+i,1+j);
+      voxl(i,j) = chgType(1+i,1+j) * 0.5291772; //Converting to angstrom from bohr
   }
-
   for(i=0; i < R.n_rows; i++)
     for(j=0; j < The.n_rows; j++)
       for(k=0; k < Phi.n_rows; k++){ 
         // changing axis to our charge file axis
-        x(0) = X.at(i,j,k) + origin(0) - chgType(0,1);
-        x(1) = Y.at(i,j,k) + origin(1) - chgType(0,2);
-        x(2) = Z.at(i,j,k) + origin(2) - chgType(0,3);
+        x(0) = X.at(i,j,k) + origin(0) * 0.5291772 - chgType(0,1);
+        x(1) = Y.at(i,j,k) + origin(1) * 0.5291772 - chgType(0,2);
+        x(2) = Z.at(i,j,k) + origin(2) * 0.5291772 - chgType(0,3);
         //c = solveMinvB(voxl, x); // fractional-index location of the point
         c = solve(voxl, x); // fractional-index location of the point
-        for (ind1 = floor(c(0)); ind1 <= ceil(c(0)); ind1++)
-          for (ind2 = floor(c(1)); ind2 <= ceil(c(1)); ind2++)
-            for (ind3 = floor(c(2)); ind3 <= ceil(c(2)); ind3++){
-              hold = 0;
-              if (ind1 >= 0 && ind1 < chgType(1,0) && ind2 < chgType(2,0) && ind2 >= 0 && ind3 >= 0 && ind3 < chgType(3,0)){
-                  hold = chgVal.at(ind1,ind2,ind3);
-              }
-              G.at(i,j,k) = G.at(i,j,k) + chgVal.at(ind1,ind2,ind3)/8.0;
+////////Averaging interpolation
+//        for (ind1 = floor(c(0)); ind1 <= ceil(c(0)); ind1++)
+//          for (ind2 = floor(c(1)); ind2 <= ceil(c(1)); ind2++)
+//            for (ind3 = floor(c(2)); ind3 <= ceil(c(2)); ind3++){
+//              c00 = 0;
+//              if (ind1 >= 0 && ind1 < chgType(1,0) && ind2 < chgType(2,0) && ind2 >= 0 && ind3 >= 0 && ind3 < chgType(3,0)){
+//                  c00 = chgVal.at(ind1,ind2,ind3);
+//              } 
+//              G.at(i,j,k) = G.at(i,j,k) + c00/8;
+//        }
+//          G(i,j,k) = G(i,j,k) + exp(-abs((coord(p,0) - x1)) - abs((coord(p,1) - x2)) - abs((coord(p,2) - x3)));
+
+////////Trilinear interpolation: en.wikipedia.org/wiki/Trilinear_interpolation
+//      chgVoxl.zeros(); //putting all charge values to zero
+//      //chgVoxl.replace(0,correction); //putting all charge values to correction
+//      for (ind1 = floor(c(0)); ind1 <= ceil(c(0)); ind1++)
+//        for (ind2 = floor(c(1)); ind2 <= ceil(c(1)); ind2++)
+//          for (ind3 = floor(c(2)); ind3 <= ceil(c(2)); ind3++){
+//            if (ind1 >= 0 && ind1 < chgType(1,0) && ind2 < chgType(2,0) && ind2 >= 0 && ind3 >= 0 && ind3 < chgType(3,0)){
+//                chgVoxl.at(ind1-floor(c(0)),ind2-floor(c(1)),ind3-floor(c(2))) = chgVal.at(ind1,ind2,ind3) + correction;
+//            } 
+//      }
+//      c_fl = floor(c);
+//      //d = x - voxl*c_fl; //gives x-x0, y-y0, z-z0
+//      //d = solve(voxl,d); //gives ratio in x, y and z
+//      d = c - c_fl; //Does what above two commented lines do
+//      // interpolating along x
+//      c00 = chgVoxl(0,0,0) * (1 - d(0)) + chgVoxl(1,0,0) * d(0);
+//      c01 = chgVoxl(0,0,1) * (1 - d(0)) + chgVoxl(1,0,1) * d(0);
+//      c10 = chgVoxl(0,1,0) * (1 - d(0)) + chgVoxl(1,1,0) * d(0);
+//      c11 = chgVoxl(0,1,1) * (1 - d(0)) + chgVoxl(1,1,1) * d(0);
+//      // interpolating along y
+//      c00 = c00 * (1 - d(1)) + c10 * d(1);
+//      c11 = c01 * (1 - d(1)) + c11 * d(1);
+//      // interpolating along z
+//      c00 = c00 * (1 - d(2)) + c11 * d(2);
+//      G.at(i,j,k) = c00;
+
+////////Tricubic interpolation: en.wikipedia.org/wiki/Tricubic_interpolation
+        chgVoxl.zeros(); //putting all charge values to zero
+        //chgVoxl.replace(0,correction); //putting all charge values to correction
+        for (ind1 = floor(c(0))-1; ind1 <= ceil(c(0))+1; ind1++)
+          for (ind2 = floor(c(1))-1; ind2 <= ceil(c(1))+1; ind2++)
+            for (ind3 = floor(c(2))-1; ind3 <= ceil(c(2))+1; ind3++){
+              if (ind1 >= 0 && ind1 < chgType(1,0) && ind2 < chgType(2,0) && ind2 >= 0 && ind3 >= 0 && ind3 < chgType(3,0) && chgVal.at(ind1,ind2,ind3) >= 0){
+                  chgVoxl.at(ind1-floor(c(0))+1,ind2-floor(c(1))+1,ind3-floor(c(2))+1) = chgVal.at(ind1,ind2,ind3) * correction;
+              } 
         }
+        c_fl = floor(c);
+        //d = x - voxl*c_fl; //gives x-x0, y-y0, z-z0
+        //d = solve(voxl,d); //gives ratio in x, y and z
+        d = c - c_fl; //Does what above two commented lines do
+        // interpolating along x
+        for (ii = 0; ii<4; ii++)
+          for (jj = 0; jj<4; jj++){
+        cx(ii,jj) = chgVoxl(0,ii,jj)*d(0)*(1-d(0))/2.*(2-d(0))/3.+chgVoxl(1,ii,jj)*(1+d(0))*(1-d(0))*(2-d(0))/2.+chgVoxl(2,ii,jj)*(1+d(0))/2.*d(0)*(2-d(0))+chgVoxl(3,ii,jj)*(1+d(0))/3.*d(0)/2.*(1-d(0));
+        }
+        // interpolating along y
+        for (ii = 0; ii<4; ii++){
+        cy(ii) = cx(0,ii)*d(1)*(1-d(1))/2.*(2-d(1))/3.+cx(1,ii)*(1+d(1))*(1-d(1))*(2-d(1))/2.+cx(2,ii)*(1+d(1))/2.*d(1)*(2-d(1))+cx(3,ii)*(1+d(1))/3.*d(1)/2.*(1-d(1));
+        }
+        // interpolating along z
+        G.at(i,j,k) = cy(0)*d(2)*(1-d(2))/2.*(2-d(2))/3.+cy(1)*(1+d(2))*(1-d(2))*(2-d(2))/2.+cy(2)*(1+d(2))/2.*d(2)*(2-d(2))+cy(3)*(1+d(2))/3.*d(2)/2.*(1-d(2));
 //          G(i,j,k) = G(i,j,k) + exp(-abs((coord(p,0) - x1)) - abs((coord(p,1) - x2)) - abs((coord(p,2) - x3)));
         //G.at(i,j,k) = G.at(i,j,k) + exp(-pow(((coord(p,0) - x1)),2) - pow((coord(p,1) - x2),2) - pow((coord(p,2) - x3),2));
         

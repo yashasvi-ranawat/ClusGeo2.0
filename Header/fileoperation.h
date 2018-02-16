@@ -139,21 +139,21 @@ cube getChgVal(char* myFile, mat chgType){
         istringstream ss(line);
         while (ss >> hold){
             pos(k)=stod(hold);
-        k++;
-     }
+            k++;
+        }
 
-        j++; 
+        }
+    j++; 
     }
-  for (k=0; k<chgType(3,0);k++){  
-      for (j=0; j<chgType(2,0);j++){
-          for (i=0; i<chgType(1,0);i++){
-          A.at(i,j,k) = pos(i+j+k);
+  for (i=0; i<int(chgType(1,0));i++){  
+      for (j=0; j<int(chgType(2,0));j++){
+          for (k=0; k<int(chgType(3,0));k++){
+          A.at(i,j,k) = pos((i*int(chgType(2,0))+j)*int(chgType(3,0))+k);
           }
       }
   }
 myfilein.close();
 return A;
-
   
 }
 #endif // 

@@ -116,6 +116,7 @@ int main(int argc, char** argv) {
   gn.col(3)= hydrogenRDF(4, z,ao,norm,R); // a0 = 0.5, Norm. Const. = 2^(3/2)
 
   g = gn.t();
+//g = ones<mat>(4, R.n_rows);
 
   for(int t=0; t < GL.n_rows; t++){ 
     for(int p=0; p < GL.n_rows; p++){ 
@@ -218,8 +219,9 @@ for(int bigI = 0; bigI < hydrogenPos.n_rows; bigI++){
       //----------------------------------------------------------------------------------------------------------------
       
       incrementN = 0; 
+      string filename = to_string(atoi(argv[8])+bigI)+".bleach";
       ofstream file1;
-      file1.open(argv[8]);
+      file1.open(filename);
       for(int n1=0; n1 < radialN; n1++){  
         for(int n2=0; n2 < radialN; n2++){ 
     
@@ -236,6 +238,7 @@ for(int bigI = 0; bigI < hydrogenPos.n_rows; bigI++){
           }
         }
       }
+      file1.close();
       //cout << endl;
       //cout << bigI << endl;
 }
